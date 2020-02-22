@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "macOS", "macOS\macOS.csproj
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Shared", "Shared\Shared.shproj", "{CFFC2C12-EA1E-4333-9DC6-F4DD30A7C679}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Windows", "Windows\Windows.csproj", "{32B718B8-6EFE-461F-8E1A-06ECEADEDBE0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,5 +17,9 @@ Global
 		{1F09BFEC-9186-4797-80B9-2F302DDEB820}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1F09BFEC-9186-4797-80B9-2F302DDEB820}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1F09BFEC-9186-4797-80B9-2F302DDEB820}.Release|Any CPU.Build.0 = Release|Any CPU
+		{32B718B8-6EFE-461F-8E1A-06ECEADEDBE0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{32B718B8-6EFE-461F-8E1A-06ECEADEDBE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{32B718B8-6EFE-461F-8E1A-06ECEADEDBE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{32B718B8-6EFE-461F-8E1A-06ECEADEDBE0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
