@@ -10,12 +10,22 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)MyGame.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)WK.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Tools.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Escena_1.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Scene.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Tools\WK.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Tools\Tools.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Tools\IScene.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Scenes\Escena_1.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Assets\GameGrid.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Assets\Score.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Tools\IAsset.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Assets\NextPiece.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)LevelNumber.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Assets\Lines.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Piece_1.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Tools\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Scenes\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Assets\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Assets\Pieces\" />
   </ItemGroup>
 </Project>

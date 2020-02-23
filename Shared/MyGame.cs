@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -13,18 +14,15 @@ namespace Shared
         public static GraphicsDeviceManager graphicsDeviceManager;
         public static ContentManager contentManager;
 
-        public const int canvasWidth = 500;
-        public const int canvasHeight = 500;
-
-        Texture2D texture2D;
+        Dictionary<string, IScene> scenes;
 
         public MyGame()
         {
             graphicsDeviceManager = new GraphicsDeviceManager(this);
 
             // Window size
-            graphicsDeviceManager.PreferredBackBufferWidth = canvasWidth;
-            graphicsDeviceManager.PreferredBackBufferHeight = canvasHeight;
+            graphicsDeviceManager.PreferredBackBufferWidth = WK.Desktop.Width;
+            graphicsDeviceManager.PreferredBackBufferHeight = WK.Desktop.Height;
         }
 
 
@@ -39,13 +37,18 @@ namespace Shared
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            texture2D = Tools.CreateColorTexture(Color.Red);
+            scenes = new Dictionary<string, IScene>()
+            {
+                { "Escena_1", new Escena_1() }
+            };
         }
 
 
         protected override void Update(GameTime gameTime)
         {
             // code
+            scenes["Escena_1"].Update();
+
             base.Update(gameTime);
         }
 
@@ -56,7 +59,7 @@ namespace Shared
             spriteBatch.Begin();
 
             // code
-            spriteBatch.Draw(texture2D, new Rectangle(50, 50, 100, 100), Color.White);
+            scenes["Escena_1"].Draw(spriteBatch);
 
             spriteBatch.End();
             base.Draw(gameTime);
