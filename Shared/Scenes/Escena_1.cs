@@ -12,6 +12,7 @@ namespace Shared
         Lines lines;
         LevelNumber levelNumber;
 
+        Piece_S piece_S;
         public Escena_1()
         {
             gameGrid = new GameGrid(new Rectangle(
@@ -24,6 +25,8 @@ namespace Shared
             score = new Score(new Rectangle(120, 120, 30, 20));
             lines = new Lines(new Rectangle(120, 150, 30, 20));
             levelNumber = new LevelNumber(new Rectangle(120, 180, 30, 20));
+
+            piece_S = new Piece_S(new Vector2(10, 10));
         }
 
         public void Update()
@@ -33,6 +36,8 @@ namespace Shared
             score.Update();
             lines.Update();
             levelNumber.Update();
+
+            piece_S.Update();
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -42,6 +47,8 @@ namespace Shared
             score.Draw(spriteBatch);
             lines.Draw(spriteBatch);
             levelNumber.Draw(spriteBatch);
+
+            piece_S.Draw(spriteBatch);
         }
 
     }
