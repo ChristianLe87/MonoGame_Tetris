@@ -14,6 +14,10 @@ namespace Shared
         Vector2 position;
 
         int frameCount = 0;
+        bool previous_keyUp = true;
+        bool previous_keyRight = true;
+        bool previous_keyLeft = true;
+
 
         public Piece_S(Vector2 position)
         {
@@ -27,13 +31,52 @@ namespace Shared
 
         public void Update()
         {
-            frameCount++;
+
             KeyboardState keyboardState = Keyboard.GetState();
 
-            if (frameCount > 30 && keyboardState.IsKeyDown(Keys.Q))
+            if (previous_keyUp == true && keyboardState.IsKeyDown(Keys.Up))
             {
                 Rotate90();
+                previous_keyUp = false;
+            }
+            else if(keyboardState.IsKeyUp(Keys.Up))
+            {
+                previous_keyUp = true;
+            }
+
+
+            if (frameCount > 30)
+            {
+                // move down
+                this.position = new Vector2(position.X, position.Y + 10);
                 frameCount = 0;
+            }
+            else
+            {
+                frameCount++;
+            }
+
+
+            if (previous_keyRight && keyboardState.IsKeyDown(Keys.Right))
+            {
+                // move right
+                this.position = new Vector2(position.X + 10, position.Y);
+                previous_keyRight = false;
+            }
+            else if (keyboardState.IsKeyUp(Keys.Right))
+            {
+                previous_keyRight = true;
+            }
+
+            if (previous_keyLeft && keyboardState.IsKeyDown(Keys.Left))
+            {
+                // move left
+                this.position = new Vector2(position.X - 10, position.Y);
+                previous_keyLeft = false;
+            }
+            else if (keyboardState.IsKeyUp(Keys.Left))
+            {
+                previous_keyLeft = true;
             }
         }
 
@@ -43,11 +86,10 @@ namespace Shared
             {
                 for (int j = 0; j < piece_s.GetLength(1); j++)
                 {
-                    if (piece_s[i, j] == 'x') { spriteBatch.Draw(texture, new Rectangle(j * 10, i * 10, 10, 10), Color.White); }                    
+                    if (piece_s[i, j] == 'x') { spriteBatch.Draw(texture, new Rectangle((int)(j * 10+position.X), (int)(i * 10+position.Y), 10, 10), Color.White); }                    
                 }
             }
         }
-
 
         public void Rotate90()
         {
