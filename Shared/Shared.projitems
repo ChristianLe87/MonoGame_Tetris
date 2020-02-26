@@ -20,7 +20,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Assets\NextPiece.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)LevelNumber.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Assets\Lines.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Piece_1.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Assets\Pieces\Piece_S.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Tools\" />

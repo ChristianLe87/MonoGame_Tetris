@@ -14,33 +14,36 @@ namespace Shared
         public GameGrid(Rectangle rectangle, int unitsWidth, int unitsHeight)
         {
 
-            this.grid = new char[unitsWidth, unitsHeight];
 
             backgrownd = Tools.CreateColorTexture(Color.LightBlue);
 
             this.rectangle = rectangle;
-            //InitialiseGrid();
+            InitialiseGrid(unitsHeight, unitsWidth);
         }
 
-     
+
 
         public void Update()
         {
 
         }
 
+
+
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(backgrownd, rectangle, Color.White);
         }
 
-        public void InitialiseGrid()
+        public void InitialiseGrid(int unitsHeight, int unitsWidth)
         {
-            for (int row = 0; row < grid.Length; row++)
+            this.grid = new char[unitsWidth, unitsHeight];
+
+            for (int row = 0; row < unitsHeight; row++)
             {
-                for (int col = 0; col < grid.Length; col++)
+                for (int col = 0; col < unitsWidth; col++)
                 {
-                    grid[row, col] = ' ';
+                    grid[col, row] = ' ';
                 }
             }
         }
