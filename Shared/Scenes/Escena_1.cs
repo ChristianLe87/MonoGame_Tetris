@@ -59,7 +59,7 @@ namespace Shared
         public void Update()
         {
             framesCount++;
-            if(framesCount > 30)
+            if (framesCount > 30)
             {
                 framesCount = 0;
                 playerPosition = new Vector2(playerPosition.X, (playerPosition.Y + 1));
@@ -116,15 +116,16 @@ namespace Shared
                 if (canDown == false)
                 {
                     field = BurnPieceIntoGrid(field, piece_s, playerPosition);
+                    playerPosition = new Vector2(1, 0);
                 }
             }
-            
+
 
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-        
+
 
 
 
@@ -158,9 +159,9 @@ namespace Shared
                 {
                     for (int col = 0; col < piece_s.GetLength(0); col++)
                     {
-                        if(piece_s[col, row] == 'p')
+                        if (piece_s[col, row] == 'p')
                         {
-                            spriteBatch.Draw(player, new Rectangle((int)((playerPosition.X * 10) + row*10), (int)((playerPosition.Y * 10) + col*10), 10, 10), Color.White);
+                            spriteBatch.Draw(player, new Rectangle((int)((playerPosition.X * 10) + row * 10), (int)((playerPosition.Y * 10) + col * 10), 10, 10), Color.White);
                         }
                     }
                 }
@@ -192,13 +193,18 @@ namespace Shared
 
         public char[,] BurnPieceIntoGrid(char[,] grid, char[,] piece, Vector2 playerPosition)
         {
-            char[,] gridResult = new char[grid.GetLength(0), grid.GetLength(1)];
+            for (int i = 0; i < piece.GetLength(0); i++)
+            {
+                for (int j = 0; j < piece.GetLength(1); j++)
+                {
+                    if (piece[i, j] == 'p')
+                    {
+                        field[(int)playerPosition.Y + i - 1, (int)playerPosition.X + j] = 'x';
+                    }
+                }
+            }
 
-
-            // make magic
-
-
-            return gridResult;
+            return field;
         }
 
     }
