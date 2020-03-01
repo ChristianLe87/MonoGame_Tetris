@@ -49,6 +49,9 @@ namespace Shared
         bool canRight = true;
 
         int framesCount = 0;
+
+        int gameSpeed = 30;
+
         public Escena_1()
         {
             backgrownd = Tools.CreateColorTexture(Color.Pink);
@@ -59,7 +62,7 @@ namespace Shared
         public void Update()
         {
             framesCount++;
-            if (framesCount > 30)
+            if (framesCount > gameSpeed)
             {
                 framesCount = 0;
                 playerPosition = new Vector2(playerPosition.X, (playerPosition.Y + 1));
@@ -106,6 +109,16 @@ namespace Shared
                 {
                     previous_keyLeft = true;
                 }
+
+                if (keyboardState.IsKeyDown(Keys.Down))
+                {
+                    gameSpeed = 1;
+                }
+                else
+                {
+                    gameSpeed = 30;
+                }
+
             }
 
 
@@ -205,6 +218,14 @@ namespace Shared
             }
 
             return field;
+        }
+
+
+
+        public char[,] DeliteLine(char[,] grid)
+        {
+
+            return grid;
         }
 
     }
