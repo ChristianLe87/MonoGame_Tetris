@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -9,31 +11,32 @@ namespace Shared
     {
 
         char[,] field = new char[,] {
-                                    { 'x', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'x' },
-                                    { 'x', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'x' },
-                                    { 'x', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'x' },
-                                    { 'x', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'x' },
-                                    { 'x', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'x' },
-                                    { 'x', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'x' },
-                                    { 'x', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'x' },
-                                    { 'x', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'x' },
-                                    { 'x', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'x' },
-                                    { 'x', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'x' },
-                                    { 'x', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'x' },
-                                    { 'x', ' ', 'x', ' ', ' ', ' ', ' ', ' ', ' ', 'x' },
-                                    { 'x', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'x' },
-                                    { 'x', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'x' },
-                                    { 'x', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'x' },
-                                    { 'x', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'x' },
-                                    { 'x', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'x' },
-                                    { 'x', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'x' },
-                                    { 'x', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'x' },
-                                    { 'x', 'x', 'x', 'x', 'x', 'x', 'x', 'x', 'x', 'x' },
+                                    { '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|' },
+                                    { '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|' },
+                                    { '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|' },
+                                    { '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|' },
+                                    { '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|' },
+                                    { '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|' },
+                                    { '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|' },
+                                    { '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|' },
+                                    { '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|' },
+                                    { '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|' },
+                                    { '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|' },
+                                    { '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|' },
+                                    { '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|' },
+                                    { '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|' },
+                                    { '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|' },
+                                    { '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|' },
+                                    { '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|' },
+                                    { '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|' },
+                                    { '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|' },
+                                    { '|', '-', '-', '-', '-', '-', '-', '-', '-', '|' },
                                     };
 
         Texture2D backgrownd;
         Texture2D piece;
         Texture2D player;
+        Texture2D border;
 
 
         Vector2 playerPosition = new Vector2(1, 0);
@@ -57,6 +60,7 @@ namespace Shared
             backgrownd = Tools.CreateColorTexture(Color.Pink);
             piece = Tools.CreateColorTexture(Color.Green);
             player = Tools.CreateColorTexture(Color.Red);
+            border = Tools.CreateColorTexture(Color.DarkGreen);
         }
 
         public void Update()
@@ -130,6 +134,7 @@ namespace Shared
                 {
                     field = BurnPieceIntoGrid(field, piece_s, playerPosition);
                     playerPosition = new Vector2(1, 0);
+                    field = DeliteLine(field);
                 }
             }
 
@@ -160,6 +165,7 @@ namespace Shared
                                 spriteBatch.Draw(player, new Rectangle(row * 10, col * 10, 10, 10), Color.White);
                                 break;
                             default:
+                                spriteBatch.Draw(border, new Rectangle(row * 10, col * 10, 10, 10), Color.White);
                                 break;
                         }
                     }
@@ -192,7 +198,8 @@ namespace Shared
                 {
                     if (piece_s[i, j] == 'p')
                     {
-                        if (field[(int)playerPosition.Y + i, (int)playerPosition.X + j] == 'x')
+                        char chr = field[(int)playerPosition.Y + i, (int)playerPosition.X + j];
+                        if (chr == 'x' || chr == '|' || chr == '-')
                         {
                             return false;
                         }
@@ -224,8 +231,47 @@ namespace Shared
 
         public char[,] DeliteLine(char[,] grid)
         {
+            List<List<char>> gridList = new List<List<char>>();
 
-            return grid;
+            for (int i = 0; i < 20; i++)
+            {
+                List<char> temp = new List<char>();
+                for (int j = 0; j < 10; j++)
+                {
+                    temp.Add(grid[i, j]);
+                }
+                gridList.Add(temp);
+            }
+
+
+
+
+            for (int i = 0; i < gridList.Count(); i++)
+            {
+                var r = gridList[i].Where(x => x == 'x').ToList();
+                if (r.Count == 8)
+                {
+                    gridList.RemoveAt(i);
+                    gridList.Insert(0, new List<char>() { '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|' });
+                    i = 0;
+                }
+            }
+
+
+
+            char[,] result = new char[20, 10];
+
+
+            for (int i = 0; i < 20; i++)
+            {
+                for (int j = 0; j < 10; j++)
+                {
+                    result[i, j] = gridList[i][j];
+                }
+            }
+
+
+            return result;
         }
 
     }
