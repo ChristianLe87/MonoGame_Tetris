@@ -111,7 +111,7 @@ namespace Shared
 
             // burn grid
             {
-                canDown = CheckIfCanMoveDown(field, piece, playerPosition);
+                canDown = CheckIfCanMoveDown(field, piece_s, playerPosition);
 
                 if (canDown == false)
                 {
@@ -169,7 +169,7 @@ namespace Shared
         }
 
 
-        private bool CheckIfCanMoveDown(char[,] field, Texture2D piece, Vector2 playerPosition)
+        private bool CheckIfCanMoveDown(char[,] field, char[,] piece_s, Vector2 playerPosition)
         {
 
             for (int i = 0; i < piece_s.GetLength(0); i++)
