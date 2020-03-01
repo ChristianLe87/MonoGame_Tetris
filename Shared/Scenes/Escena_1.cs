@@ -14,6 +14,7 @@ namespace Shared
                                     { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
                                     { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
                                     { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
+                                    { ' ', ' ', ' ', ' ', ' ', ' ', 'x', ' ', ' ', ' ' },
                                     { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
                                     { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
                                     { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
@@ -27,8 +28,7 @@ namespace Shared
                                     { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
                                     { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
                                     { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
-                                    { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
-                                    { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
+                                    { 'x', 'x', 'x', 'x', 'x', 'x', 'x', 'x', 'x', 'x' },
                                     };
 
         Texture2D backgrownd;
@@ -44,6 +44,9 @@ namespace Shared
         bool previous_keyRight = true;
         bool previous_keyLeft = true;
 
+        bool canDown = true;
+        bool canLeft = true;
+        bool canRight = true;
 
         int framesCount = 0;
         public Escena_1()
@@ -104,6 +107,17 @@ namespace Shared
                     previous_keyLeft = true;
                 }
             }
+
+
+            // burn grid
+            {
+                canDown = CheckIfCanMoveDown(field, piece, playerPosition);
+
+                if (canDown == false)
+                {
+                    field = BurnPieceIntoGrid(field, piece_s, playerPosition);
+                }
+            }
             
 
         }
@@ -152,12 +166,36 @@ namespace Shared
                 }
             }
 
+        }
 
-            // check if down is something
+
+        private bool CheckIfCanMoveDown(char[,] field, Texture2D piece, Vector2 playerPosition)
+        {
+            bool result = true;
+
+            // magic
+
+            if(field[(int)playerPosition.Y, (int)playerPosition.X] == 'x')
             {
-
+                var bla = 0;
             }
 
+
+
+            return result;
+
+        }
+
+
+        public char[,] BurnPieceIntoGrid(char[,] grid, char[,] piece, Vector2 playerPosition)
+        {
+            char[,] gridResult = new char[grid.GetLength(0), grid.GetLength(1)];
+
+
+            // make magic
+
+
+            return gridResult;
         }
 
     }
