@@ -36,7 +36,6 @@ namespace Shared
 
             if (previous_keyUp == true && keyboardState.IsKeyDown(Keys.Up))
             {
-                Rotate90();
                 previous_keyUp = false;
             }
             else if(keyboardState.IsKeyUp(Keys.Up))
@@ -91,24 +90,6 @@ namespace Shared
             }
         }
 
-        public void Rotate90()
-        {
-            char[,] result = new char[this.piece_s.GetLength(1), this.piece_s.GetLength(0)];
-            int newCol = 0;
-            int newRow = 0;
-
-            for (int col = this.piece_s.GetLength(1) - 1; col >= 0; col--)
-            {
-                newCol = 0;
-                for (int row = 0; row < this.piece_s.GetLength(0); row++)
-                {
-                    result[newRow, newCol] = this.piece_s[row, col];
-                    newCol++;
-                }
-                newRow++;
-            }
-
-            this.piece_s = result;
-        }
+       
     }
 }

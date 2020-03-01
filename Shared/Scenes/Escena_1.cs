@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 
 namespace Shared
 {
@@ -39,6 +40,10 @@ namespace Shared
         new char[,] piece_s = new char[,] { { ' ', 'p', 'p' },
                                             { 'p', 'p', ' ' } };
 
+        bool previous_keyUp = true;
+        bool previous_keyRight = true;
+        bool previous_keyLeft = true;
+
 
         int framesCount = 0;
         public Escena_1()
@@ -56,6 +61,51 @@ namespace Shared
                 framesCount = 0;
                 playerPosition = new Vector2(playerPosition.X, (playerPosition.Y + 1));
             }
+
+
+            // rotate
+            {
+                KeyboardState keyboardState = Keyboard.GetState();
+
+                if (previous_keyUp == true && keyboardState.IsKeyDown(Keys.Up))
+                {
+                    previous_keyUp = false;
+                    piece_s = Tools.Rotate90(piece_s);
+                }
+                else if (keyboardState.IsKeyUp(Keys.Up))
+                {
+                    previous_keyUp = true;
+                }
+            }
+
+            // move
+            {
+                KeyboardState keyboardState = Keyboard.GetState();
+
+                if (previous_keyRight && keyboardState.IsKeyDown(Keys.Right))
+                {
+                    // move right
+                    playerPosition = new Vector2(playerPosition.X + 1, playerPosition.Y);
+                    previous_keyRight = false;
+                }
+                else if (keyboardState.IsKeyUp(Keys.Right))
+                {
+                    previous_keyRight = true;
+                }
+
+                if (previous_keyLeft && keyboardState.IsKeyDown(Keys.Left))
+                {
+                    // move left
+                    playerPosition = new Vector2(playerPosition.X - 1, playerPosition.Y);
+                    previous_keyLeft = false;
+                }
+                else if (keyboardState.IsKeyUp(Keys.Left))
+                {
+                    previous_keyLeft = true;
+                }
+            }
+            
+
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -100,6 +150,12 @@ namespace Shared
                         }
                     }
                 }
+            }
+
+
+            // check if down is something
+            {
+
             }
 
         }
