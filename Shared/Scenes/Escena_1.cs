@@ -10,7 +10,7 @@ namespace Shared
     public class Escena_1 : IScene
     {
 
-        char[,] field = new char[,] {
+        char[,] grid = new char[,] {
                                     { '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|' },
                                     { '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|' },
                                     { '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|' },
@@ -33,15 +33,15 @@ namespace Shared
                                     { '|', '-', '-', '-', '-', '-', '-', '-', '-', '|' },
                                     };
 
-        Texture2D backgrownd;
-        Texture2D piece;
-        Texture2D player;
-        Texture2D border;
+        Texture2D textureBackgrownd;
+        Texture2D texturePiece;
+        Texture2D texturePlayer;
+        Texture2D textureBorder;
 
 
         Vector2 playerPosition = new Vector2(1, 0);
-        new char[,] piece_s = new char[,] { { ' ', 'p', 'p' },
-                                            { 'p', 'p', ' ' } };
+        new char[,] piece_s = new char[,] { { ' ', 'p', ' ' },
+                                            { 'p', 'p', 'p' } };
 
         bool previous_keyUp = true;
         bool previous_keyRight = true;
@@ -57,10 +57,10 @@ namespace Shared
 
         public Escena_1()
         {
-            backgrownd = Tools.CreateColorTexture(Color.Pink);
-            piece = Tools.CreateColorTexture(Color.Green);
-            player = Tools.CreateColorTexture(Color.Red);
-            border = Tools.CreateColorTexture(Color.DarkGreen);
+            textureBackgrownd = Tools.CreateColorTexture(Color.Pink);
+            texturePiece = Tools.CreateColorTexture(Color.Green);
+            texturePlayer = Tools.CreateColorTexture(Color.Red);
+            textureBorder = Tools.CreateColorTexture(Color.DarkGreen);
         }
 
         public void Update()
@@ -103,7 +103,8 @@ namespace Shared
                     previous_keyRight = true;
                 }
 
-                if (previous_keyLeft && keyboardState.IsKeyDown(Keys.Left))
+                canLeft = CheckIfCanMoveLeft(grid, piece_s, playerPosition);
+                if (canLeft && previous_keyLeft && keyboardState.IsKeyDown(Keys.Left))
                 {
                     // move left
                     playerPosition = new Vector2(playerPosition.X - 1, playerPosition.Y);
@@ -128,13 +129,13 @@ namespace Shared
 
             // burn grid
             {
-                canDown = CheckIfCanMoveDown(field, piece_s, playerPosition);
+                canDown = Tools.CheckIfCanMoveDown(grid, piece_s, playerPosition);
 
                 if (canDown == false)
                 {
-                    field = BurnPieceIntoGrid(field, piece_s, playerPosition);
+                    grid = Tools.BurnPieceIntoGrid(grid, piece_s, playerPosition);
                     playerPosition = new Vector2(1, 0);
-                    field = DeliteLine(field);
+                    grid = Tools.DeliteLine(grid);
                 }
             }
 
@@ -143,34 +144,31 @@ namespace Shared
 
         public void Draw(SpriteBatch spriteBatch)
         {
-
-
-
-
             // Draw grid
             {
                 for (int row = 0; row < 10; row++)
                 {
                     for (int col = 0; col < 20; col++)
                     {
-                        switch (field[col, row])
+                        switch (grid[col, row])
                         {
                             case ' ':
-                                spriteBatch.Draw(backgrownd, new Rectangle(row * 10, col * 10, 10, 10), Color.White);
+                                spriteBatch.Draw(textureBackgrownd, new Rectangle(row * 10, col * 10, 10, 10), Color.White);
                                 break;
                             case 'x':
-                                spriteBatch.Draw(piece, new Rectangle(row * 10, col * 10, 10, 10), Color.White);
+                                spriteBatch.Draw(texturePiece, new Rectangle(row * 10, col * 10, 10, 10), Color.White);
                                 break;
                             case 'p':
-                                spriteBatch.Draw(player, new Rectangle(row * 10, col * 10, 10, 10), Color.White);
+                                spriteBatch.Draw(texturePlayer, new Rectangle(row * 10, col * 10, 10, 10), Color.White);
                                 break;
                             default:
-                                spriteBatch.Draw(border, new Rectangle(row * 10, col * 10, 10, 10), Color.White);
+                                spriteBatch.Draw(textureBorder, new Rectangle(row * 10, col * 10, 10, 10), Color.White);
                                 break;
                         }
                     }
                 }
             }
+
 
             // draw player
             {
@@ -180,7 +178,7 @@ namespace Shared
                     {
                         if (piece_s[col, row] == 'p')
                         {
-                            spriteBatch.Draw(player, new Rectangle((int)((playerPosition.X * 10) + row * 10), (int)((playerPosition.Y * 10) + col * 10), 10, 10), Color.White);
+                            spriteBatch.Draw(texturePlayer, new Rectangle((int)((playerPosition.X * 10) + row * 10), (int)((playerPosition.Y * 10) + col * 10), 10, 10), Color.White);
                         }
                     }
                 }
@@ -188,91 +186,12 @@ namespace Shared
 
         }
 
-
-        private bool CheckIfCanMoveDown(char[,] field, char[,] piece_s, Vector2 playerPosition)
+        public static bool CheckIfCanMoveLeft(char[,] grid, char[,] piece_s, Vector2 playerPosition)
         {
-
-            for (int i = 0; i < piece_s.GetLength(0); i++)
-            {
-                for (int j = 0; j < piece_s.GetLength(1); j++)
-                {
-                    if (piece_s[i, j] == 'p')
-                    {
-                        char chr = field[(int)playerPosition.Y + i, (int)playerPosition.X + j];
-                        if (chr == 'x' || chr == '|' || chr == '-')
-                        {
-                            return false;
-                        }
-                    }
-                }
-            }
+          
 
             return true;
+
         }
-
-
-        public char[,] BurnPieceIntoGrid(char[,] grid, char[,] piece, Vector2 playerPosition)
-        {
-            for (int i = 0; i < piece.GetLength(0); i++)
-            {
-                for (int j = 0; j < piece.GetLength(1); j++)
-                {
-                    if (piece[i, j] == 'p')
-                    {
-                        field[(int)playerPosition.Y + i - 1, (int)playerPosition.X + j] = 'x';
-                    }
-                }
-            }
-
-            return field;
-        }
-
-
-
-        public char[,] DeliteLine(char[,] grid)
-        {
-            List<List<char>> gridList = new List<List<char>>();
-
-            for (int i = 0; i < 20; i++)
-            {
-                List<char> temp = new List<char>();
-                for (int j = 0; j < 10; j++)
-                {
-                    temp.Add(grid[i, j]);
-                }
-                gridList.Add(temp);
-            }
-
-
-
-
-            for (int i = 0; i < gridList.Count(); i++)
-            {
-                var r = gridList[i].Where(x => x == 'x').ToList();
-                if (r.Count == 8)
-                {
-                    gridList.RemoveAt(i);
-                    gridList.Insert(0, new List<char>() { '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|' });
-                    i = 0;
-                }
-            }
-
-
-
-            char[,] result = new char[20, 10];
-
-
-            for (int i = 0; i < 20; i++)
-            {
-                for (int j = 0; j < 10; j++)
-                {
-                    result[i, j] = gridList[i][j];
-                }
-            }
-
-
-            return result;
-        }
-
     }
 }
