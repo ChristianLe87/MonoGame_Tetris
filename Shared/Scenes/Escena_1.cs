@@ -14,13 +14,13 @@ namespace Shared
                                     { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
                                     { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
                                     { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
-                                    { ' ', ' ', ' ', ' ', ' ', ' ', 'x', ' ', ' ', ' ' },
                                     { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
                                     { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
                                     { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
                                     { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
                                     { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
                                     { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
+                                    { ' ', ' ', 'x', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
                                     { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
                                     { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
                                     { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
@@ -171,19 +171,22 @@ namespace Shared
 
         private bool CheckIfCanMoveDown(char[,] field, Texture2D piece, Vector2 playerPosition)
         {
-            bool result = true;
 
-            // magic
-
-            if(field[(int)playerPosition.Y, (int)playerPosition.X] == 'x')
+            for (int i = 0; i < piece_s.GetLength(0); i++)
             {
-                var bla = 0;
+                for (int j = 0; j < piece_s.GetLength(1); j++)
+                {
+                    if (piece_s[i, j] == 'p')
+                    {
+                        if (field[(int)playerPosition.Y + i, (int)playerPosition.X + j] == 'x')
+                        {
+                            return false;
+                        }
+                    }
+                }
             }
 
-
-
-            return result;
-
+            return true;
         }
 
 
