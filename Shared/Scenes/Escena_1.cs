@@ -94,7 +94,7 @@ namespace Shared
                 KeyboardState keyboardState = Keyboard.GetState();
 
 
-                canRight = CheckIfCanMoveRight(grid, piece_s, playerPosition);
+                canRight = Tools.CheckIfCanMoveRight(grid, piece_s, playerPosition);
 
                 if (canRight &&  previous_keyRight && keyboardState.IsKeyDown(Keys.Right))
                 {
@@ -107,7 +107,7 @@ namespace Shared
                     previous_keyRight = true;
                 }
 
-                canLeft = CheckIfCanMoveLeft(grid, piece_s, playerPosition);
+                canLeft = Tools.CheckIfCanMoveLeft(grid, piece_s, playerPosition);
                 if (canLeft && previous_keyLeft && keyboardState.IsKeyDown(Keys.Left))
                 {
                     // move left
@@ -191,45 +191,6 @@ namespace Shared
 
         }
 
-        public static bool CheckIfCanMoveLeft(char[,] grid, char[,] piece_s, Vector2 playerPosition)
-        {
-            for(var pieceRow = 0; pieceRow< piece_s.GetLength(0); pieceRow++)
-            {
-                for (int pieceElement = 0; pieceElement < piece_s.GetLength(1); pieceElement++)
-                {
-                    if(piece_s[pieceRow, pieceElement] == 'p')
-                    {
-                        char rightChar = grid[(int)playerPosition.Y + pieceRow,(int)playerPosition.X + pieceElement - 1];
-                        if (rightChar == 'x' || rightChar == '|')
-                        {
-                            return false;
-                        }
-                    }
-                    
-                }
-            }
-            return true;
-        }
 
-
-        public static bool CheckIfCanMoveRight(char[,] grid, char[,] piece_s, Vector2 playerPosition)
-        {
-            for (var pieceRow = 0; pieceRow < piece_s.GetLength(0); pieceRow++)
-            {
-                for (int pieceElement = 0; pieceElement < piece_s.GetLength(1); pieceElement++)
-                {
-                    if (piece_s[pieceRow, pieceElement] == 'p')
-                    {
-                        char leftChar = grid[(int)playerPosition.Y + pieceRow, (int)playerPosition.X + pieceElement + 1];
-                        if (leftChar == 'x' || leftChar == '|')
-                        {
-                            return false;
-                        }
-                    }
-
-                }
-            }
-            return true;
-        }
     }
 }
