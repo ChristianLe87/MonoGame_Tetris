@@ -188,10 +188,22 @@ namespace Shared
 
         public static bool CheckIfCanMoveLeft(char[,] grid, char[,] piece_s, Vector2 playerPosition)
         {
-          
-
+            for(var pieceRow = 0; pieceRow< piece_s.GetLength(0); pieceRow++)
+            {
+                for (int pieceElement = 0; pieceElement < piece_s.GetLength(1); pieceElement++)
+                {
+                    if(piece_s[pieceRow, pieceElement] == 'p')
+                    {
+                        char leftChar = grid[(int)playerPosition.Y + pieceRow,(int)playerPosition.X + pieceRow - 1];
+                        if (leftChar == 'x' || leftChar == '|')
+                        {
+                            return false;
+                        }
+                    }
+                    
+                }
+            }
             return true;
-
         }
     }
 }
