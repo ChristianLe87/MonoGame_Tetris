@@ -15,7 +15,7 @@ namespace Shared
             this.backgrownd = Tools.CreateColorTexture(Color.Pink);
         }
 
-        public void Update()
+        public void Update(char[,] grid)
         {
             //throw new NotImplementedException();
         }

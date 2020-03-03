@@ -8,58 +8,51 @@ namespace Shared
 {
     public class Piece_S : IAsset
     {
-        List<char[,]> pieces;
-        char[,] piece_s;
-        Texture2D texture;
-        Vector2 position;
 
-        int frameCount = 0;
+        public char[,] pieceDesign = new char[,] { { ' ', 'p', 'p' },
+                                            { ' ', 'p', ' ' },
+                                            { ' ', 'p', ' ' }};
+
+        public Vector2 playerPosition;
+        public Texture2D texturePiece;
+
+
+        int framesCount = 0;
+
+        int gameSpeed = 30;
+        bool canLeft = true;
+        bool canRight = true;
         bool previous_keyUp = true;
+        public bool canDown = true;
+
         bool previous_keyRight = true;
         bool previous_keyLeft = true;
 
-
         public Piece_S(Vector2 position)
         {
-            this.texture = Tools.CreateColorTexture(Color.Red);
-            this.piece_s = new char[,] { { ' ', 'x', 'x' },
-                                         { 'x', 'x', ' ' } };
-            this.position = position;
+            this.playerPosition = position;
+            this.texturePiece = Tools.CreateColorTexture(Color.Green);
+
         }
 
 
-
-        public void Update()
+        public void Update(char[,] grid)
         {
-
             KeyboardState keyboardState = Keyboard.GetState();
 
-            if (previous_keyUp == true && keyboardState.IsKeyDown(Keys.Up))
+            framesCount++;
+            if (framesCount > gameSpeed)
             {
-                previous_keyUp = false;
-            }
-            else if(keyboardState.IsKeyUp(Keys.Up))
-            {
-                previous_keyUp = true;
+                framesCount = 0;
+                this.playerPosition = new Vector2(this.playerPosition.X, (this.playerPosition.Y + 1));
             }
 
+            canRight = Tools.CheckIfCanMoveRight(grid, this.pieceDesign, this.playerPosition);
 
-            if (frameCount > 30)
-            {
-                // move down
-                this.position = new Vector2(position.X, position.Y + 10);
-                frameCount = 0;
-            }
-            else
-            {
-                frameCount++;
-            }
-
-
-            if (previous_keyRight && keyboardState.IsKeyDown(Keys.Right))
+            if (canRight && previous_keyRight && keyboardState.IsKeyDown(Keys.Right))
             {
                 // move right
-                this.position = new Vector2(position.X + 10, position.Y);
+                this.playerPosition = new Vector2(this.playerPosition.X + 1, this.playerPosition.Y);
                 previous_keyRight = false;
             }
             else if (keyboardState.IsKeyUp(Keys.Right))
@@ -67,25 +60,62 @@ namespace Shared
                 previous_keyRight = true;
             }
 
-            if (previous_keyLeft && keyboardState.IsKeyDown(Keys.Left))
+            canLeft = Tools.CheckIfCanMoveLeft(grid, this.pieceDesign, this.playerPosition);
+            if (canLeft && previous_keyLeft && keyboardState.IsKeyDown(Keys.Left))
             {
                 // move left
-                this.position = new Vector2(position.X - 10, position.Y);
+                this.playerPosition = new Vector2(this.playerPosition.X - 1, this.playerPosition.Y);
                 previous_keyLeft = false;
             }
             else if (keyboardState.IsKeyUp(Keys.Left))
             {
                 previous_keyLeft = true;
             }
+
+
+            if (keyboardState.IsKeyDown(Keys.Down))
+            {
+                gameSpeed = 1;
+            }
+            else
+            {
+                gameSpeed = 30;
+            }
+
+
+            // rotate
+            {
+
+                if (previous_keyUp == true && keyboardState.IsKeyDown(Keys.Up))
+                {
+                    previous_keyUp = false;
+                    this.pieceDesign = Tools.Rotate90(this.pieceDesign);
+                }
+                else if (keyboardState.IsKeyUp(Keys.Up))
+                {
+                    previous_keyUp = true;
+                }
+            }
+
+
+            canDown = Tools.CheckIfCanMoveDown(grid, this.pieceDesign, this.playerPosition);
+
         }
+
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            for (int i = 0; i < piece_s.GetLength(0); i++)
+            // draw player
             {
-                for (int j = 0; j < piece_s.GetLength(1); j++)
+                for (int row = 0; row < this.pieceDesign.GetLength(1); row++)
                 {
-                    if (piece_s[i, j] == 'x') { spriteBatch.Draw(texture, new Rectangle((int)(j * 10+position.X), (int)(i * 10+position.Y), 10, 10), Color.White); }                    
+                    for (int col = 0; col < this.pieceDesign.GetLength(0); col++)
+                    {
+                        if (this.pieceDesign[col, row] == 'p')
+                        {
+                            spriteBatch.Draw(texturePiece, new Rectangle((int)((this.playerPosition.X * 10) + row * 10), (int)((this.playerPosition.Y * 10) + col * 10), 10, 10), Color.White);
+                        }
+                    }
                 }
             }
         }

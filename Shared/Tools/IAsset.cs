@@ -5,7 +5,7 @@ namespace Shared
 {
     public interface IAsset
     {
-        public void Update();
+        public void Update(char[,] grid);
         public void Draw(SpriteBatch spriteBatch);
     }
 }
