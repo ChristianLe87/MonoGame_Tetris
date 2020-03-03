@@ -40,8 +40,9 @@ namespace Shared
 
 
         Vector2 playerPosition = new Vector2(1, 0);
-        new char[,] piece_s = new char[,] { { ' ', 'p', ' ' },
-                                            { 'p', 'p', 'p' } };
+        new char[,] piece_s = new char[,] { { ' ', 'p', 'p' },
+                                            { ' ', 'p', ' ' },
+                                            { ' ', 'p', ' ' }};
 
         bool previous_keyUp = true;
         bool previous_keyRight = true;
@@ -92,7 +93,10 @@ namespace Shared
             {
                 KeyboardState keyboardState = Keyboard.GetState();
 
-                if (previous_keyRight && keyboardState.IsKeyDown(Keys.Right))
+
+                canRight = CheckIfCanMoveRight(grid, piece_s, playerPosition);
+
+                if (canRight &&  previous_keyRight && keyboardState.IsKeyDown(Keys.Right))
                 {
                     // move right
                     playerPosition = new Vector2(playerPosition.X + 1, playerPosition.Y);
@@ -114,6 +118,7 @@ namespace Shared
                 {
                     previous_keyLeft = true;
                 }
+
 
                 if (keyboardState.IsKeyDown(Keys.Down))
                 {
@@ -194,13 +199,34 @@ namespace Shared
                 {
                     if(piece_s[pieceRow, pieceElement] == 'p')
                     {
-                        char leftChar = grid[(int)playerPosition.Y + pieceRow,(int)playerPosition.X + pieceRow - 1];
-                        if (leftChar == 'x' || leftChar == '|')
+                        char rightChar = grid[(int)playerPosition.Y + pieceRow,(int)playerPosition.X + pieceElement - 1];
+                        if (rightChar == 'x' || rightChar == '|')
                         {
                             return false;
                         }
                     }
                     
+                }
+            }
+            return true;
+        }
+
+
+        public static bool CheckIfCanMoveRight(char[,] grid, char[,] piece_s, Vector2 playerPosition)
+        {
+            for (var pieceRow = 0; pieceRow < piece_s.GetLength(0); pieceRow++)
+            {
+                for (int pieceElement = 0; pieceElement < piece_s.GetLength(1); pieceElement++)
+                {
+                    if (piece_s[pieceRow, pieceElement] == 'p')
+                    {
+                        char leftChar = grid[(int)playerPosition.Y + pieceRow, (int)playerPosition.X + pieceElement + 1];
+                        if (leftChar == 'x' || leftChar == '|')
+                        {
+                            return false;
+                        }
+                    }
+
                 }
             }
             return true;
