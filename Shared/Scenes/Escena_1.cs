@@ -1,22 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 
 namespace Shared
 {
     public class Escena_1 : IScene
     {
-
         GameGrid gameGrid;
         Piece_S piece_S;
 
         public Escena_1()
         {
             piece_S = new Piece_S(new Vector2(1, 0));
-
             gameGrid = new GameGrid();
 
         }
@@ -30,13 +24,7 @@ namespace Shared
         public void Draw(SpriteBatch spriteBatch)
         {
             gameGrid.Draw(spriteBatch);
-           
-
-
             piece_S.Draw(spriteBatch);
-
         }
-
-
     }
 }

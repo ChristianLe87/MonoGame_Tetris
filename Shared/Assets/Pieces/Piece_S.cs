@@ -9,9 +9,9 @@ namespace Shared
     public class Piece_S : IAsset
     {
 
-        public char[,] pieceDesign = new char[,] { { ' ', 'p', 'p' },
-                                            { ' ', 'p', ' ' },
-                                            { ' ', 'p', ' ' }};
+        public char[,] pieceDesign = new char[,] {  { ' ', 'p', 'p' },
+                                                    { ' ', 'p', ' ' },
+                                                    { ' ', 'p', ' ' } };
 
         public Vector2 playerPosition;
         public Texture2D texturePiece;
