@@ -52,6 +52,7 @@ namespace Shared
                 {
                     this.grid = Tools.BurnPieceIntoGrid(this.grid, piece_S.pieceDesign, piece_S.playerPosition);
                     piece_S.playerPosition = new Vector2(1, 0);
+                    piece_S.RandPiece();
                     this.grid = Tools.DeliteLine(this.grid);
                 }
             }            

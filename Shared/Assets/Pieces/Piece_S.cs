@@ -9,9 +9,36 @@ namespace Shared
     public class Piece_S : IAsset
     {
 
-        public char[,] pieceDesign = new char[,] {  { ' ', 'p', 'p' },
-                                                    { ' ', 'p', ' ' },
-                                                    { ' ', 'p', ' ' } };
+
+        char[,] s = new char[,] {   { ' ', 'p', 'p' },
+                                    { 'p', 'p', ' ' }   };
+
+        char[,] z = new char[,] {   { 'p', 'p', ' ' },
+                                    { ' ', 'p', 'p' }   };
+
+        char[,] t = new char[,] {   { 'p', 'p', 'p' },
+                                    { ' ', 'p', ' ' }   };
+
+        char[,] o = new char[,] {   { 'p', 'p' },
+                                    { 'p', 'p' }   };
+
+        char[,] i = new char[,] {   { 'p' },
+                                    { 'p' },
+                                    { 'p' },
+                                    { 'p' }   };
+
+        char[,] l = new char[,] {   { 'p', ' ' },
+                                    { 'p', ' ' },
+                                    { 'p', 'p' }   };
+
+        char[,] j = new char[,] {   { ' ', 'p' },
+                                    { ' ', 'p' },
+                                    { 'p', 'p' }   };
+
+
+
+        List<char[,]> pieces = new List<char[,]>();
+        public char[,] pieceDesign;
 
         public Vector2 playerPosition;
         public Texture2D texturePiece;
@@ -19,7 +46,7 @@ namespace Shared
 
         int framesCount = 0;
 
-        int gameSpeed = 30;
+        int downSpeed = 30;
         bool canLeft = true;
         bool canRight = true;
         bool previous_keyUp = true;
@@ -30,6 +57,17 @@ namespace Shared
 
         public Piece_S(Vector2 position)
         {
+            this.pieces.Add(s);
+            this.pieces.Add(z);
+            this.pieces.Add(t);
+            this.pieces.Add(o);
+            this.pieces.Add(i);
+            this.pieces.Add(l);
+            this.pieces.Add(j);
+
+            int r = new Random().Next(0, 6);
+            pieceDesign = pieces[r];
+
             this.playerPosition = position;
             this.texturePiece = Tools.CreateColorTexture(Color.Green);
 
@@ -41,7 +79,7 @@ namespace Shared
             KeyboardState keyboardState = Keyboard.GetState();
 
             framesCount++;
-            if (framesCount > gameSpeed)
+            if (framesCount > downSpeed)
             {
                 framesCount = 0;
                 this.playerPosition = new Vector2(this.playerPosition.X, (this.playerPosition.Y + 1));
@@ -75,11 +113,11 @@ namespace Shared
 
             if (keyboardState.IsKeyDown(Keys.Down))
             {
-                gameSpeed = 1;
+                downSpeed = 1;
             }
             else
             {
-                gameSpeed = 30;
+                downSpeed = 30;
             }
 
 
@@ -102,6 +140,11 @@ namespace Shared
 
         }
 
+        internal void RandPiece()
+        {
+            int r = new Random().Next(0, 6);
+            this.pieceDesign = pieces[r];
+        }
 
         public void Draw(SpriteBatch spriteBatch)
         {
