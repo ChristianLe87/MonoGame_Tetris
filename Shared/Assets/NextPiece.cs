@@ -4,26 +4,55 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Shared
 {
-    public class NextPiece:IAsset
+    public class NextPiece
     {
-        Rectangle rectangle;
-        Texture2D backgrownd;
+        Vector2 position;
+        Texture2D texture2D;
+        Texture2D background;
+        public char[,] piece = new char[,] {   { ' ', 'p', 'p' },
+                                        { 'p', 'p', ' ' }   };
 
-        public NextPiece(Rectangle rectangle)
+
+        public NextPiece(Vector2 position)
         {
-            this.rectangle = rectangle;
-            this.backgrownd = Tools.CreateColorTexture(Color.Green);
+            this.position = position;
+            this.texture2D = Tools.CreateColorTexture(Color.Red);
+            this.background = Tools.CreateColorTexture(Color.Pink);
         }
 
-        public void Update(char[,] grid)
+
+        public void Update()
         {
-            //throw new NotImplementedException();
+            throw new NotImplementedException();
         }
 
 
-        public void Draw(SpriteBatch spriteBatch, Vector2 position = default)
+        public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(backgrownd, rectangle, Color.White);
+
+
+            // draw background
+            {
+                spriteBatch.Draw(background, new Rectangle((int)position.X, (int)position.Y, 50, 50), Color.White);
+            }
+
+
+            // draw piece
+            {
+                for (int row = 0; row < this.piece.GetLength(1); row++)
+                {
+                    for (int col = 0; col < this.piece.GetLength(0); col++)
+                    {
+                        if (this.piece[col, row] == 'p')
+                        {
+                            spriteBatch.Draw(texture2D, new Rectangle((int)(row * 10 + position.X), (int)(col * 10 + position.Y), 10, 10), Color.White);
+                        }
+                    }
+                }
+            }
+
+
+
         }
     }
 }

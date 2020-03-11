@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Shared
 {
-    public class Piece_S : IAsset
+    public class Piece : IAsset
     {
 
 
@@ -55,7 +55,7 @@ namespace Shared
         bool previous_keyRight = true;
         bool previous_keyLeft = true;
 
-        public Piece_S(Vector2 position)
+        public Piece(Vector2 position)
         {
             this.pieces.Add(s);
             this.pieces.Add(z);

@@ -6,7 +6,7 @@ namespace Shared
 {
     public class GameGrid
     {
-        Piece_S piece_S;
+        Piece piece;
 
         public char[,] grid = new char[,] {
                                     { '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|' },
@@ -43,7 +43,7 @@ namespace Shared
             texturePlayer = Tools.CreateColorTexture(Color.Red);
             textureBorder = Tools.CreateColorTexture(Color.DarkGreen);
 
-            piece_S = new Piece_S(new Vector2(1, 0));
+            piece = new Piece(new Vector2(1, 0));
 
         }
 
@@ -51,16 +51,16 @@ namespace Shared
         public void Update()
         {
 
-            piece_S.Update(this.grid);
+            piece.Update(this.grid);
 
             // burn grid
             {
 
-                if (piece_S.canDown == false)
+                if (piece.canDown == false)
                 {
-                    this.grid = Tools.BurnPieceIntoGrid(this.grid, piece_S.pieceDesign, piece_S.playerPosition);
-                    piece_S.playerPosition = new Vector2(1, 0);
-                    piece_S.RandPiece();
+                    this.grid = Tools.BurnPieceIntoGrid(this.grid, piece.pieceDesign, piece.playerPosition);
+                    piece.playerPosition = new Vector2(1, 0);
+                    piece.RandPiece();
                     this.grid = Tools.DeliteLine(this.grid);
                 }
             }
@@ -91,7 +91,7 @@ namespace Shared
                 }
             }
 
-            piece_S.Draw(spriteBatch, GameGridPosition);
+            piece.Draw(spriteBatch, GameGridPosition);
 
         }
 
