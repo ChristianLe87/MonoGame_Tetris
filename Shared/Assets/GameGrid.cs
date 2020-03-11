@@ -6,7 +6,7 @@ namespace Shared
 {
     public class GameGrid
     {
-        Piece piece;
+        public Piece piece;
 
         public char[,] grid = new char[,] {
                                     { '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|' },

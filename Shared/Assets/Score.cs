@@ -4,26 +4,26 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Shared
 {
-    public class Score : IAsset
+    public class Score
     {
-        Rectangle rectangle;
+        Vector2 position;
         Texture2D backgrownd;
 
-        public Score(Rectangle rectangle)
+        public Score(Vector2 position)
         {
-            this.rectangle = rectangle;
+            this.position = position;
             this.backgrownd = Tools.CreateColorTexture(Color.YellowGreen);
         }
 
-        public void Update(char[,] grid)
+        public void Update()
         {
             //throw new NotImplementedException();
         }
 
    
-        public void Draw(SpriteBatch spriteBatch, Vector2 position = default)
+        public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(backgrownd, rectangle, Color.White);
+            spriteBatch.Draw(backgrownd, new Rectangle((int)position.X, (int)position.Y,50,50), Color.White);
         }
     }
 }

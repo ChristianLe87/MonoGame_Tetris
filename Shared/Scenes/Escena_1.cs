@@ -7,16 +7,17 @@ namespace Shared
     {
         GameGrid gameGrid;
         NextPiece nextPiece;
-
+        Score score;
         public Escena_1()
         {
             gameGrid = new GameGrid(new Vector2(10, 10));
-            nextPiece = new NextPiece(new Vector2(150, 10));
-
+            nextPiece = new NextPiece(new Vector2(120, 10));
+            score = new Score(new Vector2(120, 70));
         }
 
         public void Update()
         {
+            nextPiece.piece = gameGrid.piece.pieceDesign;
             gameGrid.Update();
         }
 
@@ -24,6 +25,7 @@ namespace Shared
         {
             nextPiece.Draw(spriteBatch);
             gameGrid.Draw(spriteBatch);
+            score.Draw(spriteBatch);
         }
     }
 }
