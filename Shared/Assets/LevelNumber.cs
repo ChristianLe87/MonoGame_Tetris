@@ -20,10 +20,10 @@ namespace Shared
             //throw new NotImplementedException();
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+
+        public void Draw(SpriteBatch spriteBatch, Vector2 position = default)
         {
             spriteBatch.Draw(backgrownd, rectangle, Color.White);
         }
-
     }
 }

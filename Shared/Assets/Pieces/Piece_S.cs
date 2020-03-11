@@ -146,7 +146,7 @@ namespace Shared
             this.pieceDesign = pieces[r];
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch, Vector2 gameGridPosition)
         {
             // draw player
             {
@@ -156,13 +156,13 @@ namespace Shared
                     {
                         if (this.pieceDesign[col, row] == 'p')
                         {
-                            spriteBatch.Draw(texturePiece, new Rectangle((int)((this.playerPosition.X * 10) + row * 10), (int)((this.playerPosition.Y * 10) + col * 10), 10, 10), Color.White);
+                            spriteBatch.Draw(texturePiece, new Rectangle((int)((this.playerPosition.X * 10) + row * 10 + gameGridPosition.X), (int)((this.playerPosition.Y * 10+ gameGridPosition.Y) + col * 10), 10, 10), Color.White);
                         }
                     }
                 }
             }
         }
 
-       
+
     }
 }

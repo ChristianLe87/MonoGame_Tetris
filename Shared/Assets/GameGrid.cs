@@ -6,6 +6,8 @@ namespace Shared
 {
     public class GameGrid
     {
+        Piece_S piece_S;
+
         public char[,] grid = new char[,] {
                                     { '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|' },
                                     { '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|' },
@@ -33,18 +35,24 @@ namespace Shared
         public Texture2D texturePlayer;
         public Texture2D textureBorder;
 
-
-        public GameGrid()
+        public Vector2 GameGridPosition;
+        public GameGrid(Vector2 GameGridPosition)
         {
-
+            this.GameGridPosition = GameGridPosition;
             textureBackgrownd = Tools.CreateColorTexture(Color.Pink);
             texturePlayer = Tools.CreateColorTexture(Color.Red);
             textureBorder = Tools.CreateColorTexture(Color.DarkGreen);
+
+            piece_S = new Piece_S(new Vector2(1, 0));
+
         }
 
 
-        public void Update(Piece_S piece_S)
+        public void Update()
         {
+
+            piece_S.Update(this.grid);
+
             // burn grid
             {
 
@@ -55,7 +63,7 @@ namespace Shared
                     piece_S.RandPiece();
                     this.grid = Tools.DeliteLine(this.grid);
                 }
-            }            
+            }
         }
 
 
@@ -70,20 +78,23 @@ namespace Shared
                         switch (this.grid[col, row])
                         {
                             case ' ':
-                                spriteBatch.Draw(this.textureBackgrownd, new Rectangle(row * 10, col * 10, 10, 10), Color.White);
+                                spriteBatch.Draw(this.textureBackgrownd, new Rectangle(row * 10 + (int)GameGridPosition.X, col * 10 + (int)GameGridPosition.Y, 10, 10), Color.White);
                                 break;
                             case 'x':
-                                spriteBatch.Draw(this.texturePlayer, new Rectangle(row * 10, col * 10, 10, 10), Color.White);
+                                spriteBatch.Draw(this.texturePlayer, new Rectangle(row * 10 + (int)GameGridPosition.X, col * 10 + (int)GameGridPosition.Y, 10, 10), Color.White);
                                 break;
                             default:
-                                spriteBatch.Draw(this.textureBorder, new Rectangle(row * 10, col * 10, 10, 10), Color.White);
+                                spriteBatch.Draw(this.textureBorder, new Rectangle(row * 10 + (int)GameGridPosition.X, col * 10 + (int)GameGridPosition.Y, 10, 10), Color.White);
                                 break;
                         }
                     }
                 }
             }
+
+            piece_S.Draw(spriteBatch, GameGridPosition);
+
         }
 
-       
+
     }
 }
