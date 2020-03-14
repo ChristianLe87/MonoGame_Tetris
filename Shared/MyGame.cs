@@ -14,7 +14,9 @@ namespace Shared
         public static GraphicsDeviceManager graphicsDeviceManager;
         public static ContentManager contentManager;
 
-        Dictionary<string, IScene> scenes;
+        Dictionary<string, Escena_1> scenes;
+
+        Texture2D test2;
 
         public MyGame()
         {
@@ -37,7 +39,7 @@ namespace Shared
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            scenes = new Dictionary<string, IScene>()
+            scenes = new Dictionary<string, Escena_1>()
             {
                 { "Escena_1", new Escena_1() }
             };

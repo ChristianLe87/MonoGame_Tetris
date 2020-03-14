@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Shared
 {
-    public class Piece : IAsset
+    public class Piece
     {
 
 
@@ -127,7 +127,8 @@ namespace Shared
                 if (previous_keyUp == true && keyboardState.IsKeyDown(Keys.Up))
                 {
                     previous_keyUp = false;
-                    this.pieceDesign = Rotate90(this.pieceDesign);
+                    this.pieceDesign = Rotate90(this.pieceDesign, grid, pieceDesign, playerPosition);
+
                 }
                 else if (keyboardState.IsKeyUp(Keys.Up))
                 {
@@ -228,7 +229,7 @@ namespace Shared
         }
 
 
-        private char[,] Rotate90(char[,] piece)
+        private char[,] Rotate90(char[,] piece, char[,] grid, char[,] pieceDesign, Vector2 playerPosition)
         {
             char[,] result = new char[piece.GetLength(1), piece.GetLength(0)];
             int newCol = 0;
@@ -245,9 +246,23 @@ namespace Shared
                 newRow++;
             }
 
-            return result;
+
+
+            bool canRotate = CheckIfCanRotate(grid, this.pieceDesign, this.playerPosition);
+            if (canRotate == true)
+            {
+                return result; // new
+            }
+            else
+            {
+                return piece; // original
+            }
+            
         }
 
-
+        private bool CheckIfCanRotate(char[,] grid, char[,] pieceDesign, Vector2 playerPosition)
+        {
+            return true;
+        }
     }
 }

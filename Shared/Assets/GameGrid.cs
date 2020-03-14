@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -62,7 +63,7 @@ namespace Shared
                     this.grid = BurnPieceIntoGrid(this.grid, piece.pieceDesign, piece.playerPosition);
                     piece.playerPosition = new Vector2(1, 0);
                     piece.RandPiece();
-                    this.grid = Tools.DeliteLine(this.grid);
+                    this.grid = DeliteLine(this.grid);
                 }
             }
         }

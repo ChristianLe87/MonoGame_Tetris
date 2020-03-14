@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Shared
 {
-    public class Lines : IAsset
+    public class Lines
     {
         Rectangle rectangle;
         Texture2D backgrownd;

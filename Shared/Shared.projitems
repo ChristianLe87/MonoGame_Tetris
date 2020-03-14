@@ -12,11 +12,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)MyGame.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Tools\WK.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Tools\Tools.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Tools\IScene.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Scenes\Escena_1.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Assets\GameGrid.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Assets\Score.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Tools\IAsset.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Assets\NextPiece.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Assets\Lines.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Assets\Pieces\Piece.cs" />

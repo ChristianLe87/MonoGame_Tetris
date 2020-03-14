@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Shared
 {
-    public class Escena_1 : IScene
+    public class Escena_1
     {
         GameGrid gameGrid;
         NextPiece nextPiece;

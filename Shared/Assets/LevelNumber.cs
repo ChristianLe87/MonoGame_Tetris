@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Shared
 {
-    public class LevelNumber : IAsset
+    public class LevelNumber
     {
         Rectangle rectangle;
         Texture2D backgrownd;
