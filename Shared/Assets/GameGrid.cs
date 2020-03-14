@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -58,7 +59,7 @@ namespace Shared
 
                 if (piece.canDown == false)
                 {
-                    this.grid = Tools.BurnPieceIntoGrid(this.grid, piece.pieceDesign, piece.playerPosition);
+                    this.grid = BurnPieceIntoGrid(this.grid, piece.pieceDesign, piece.playerPosition);
                     piece.playerPosition = new Vector2(1, 0);
                     piece.RandPiece();
                     this.grid = Tools.DeliteLine(this.grid);
@@ -93,6 +94,70 @@ namespace Shared
 
             piece.Draw(spriteBatch, GameGridPosition);
 
+        }
+
+
+
+        private char[,] BurnPieceIntoGrid(char[,] grid, char[,] piece, Vector2 playerPosition)
+        {
+            for (int i = 0; i < piece.GetLength(0); i++)
+            {
+                for (int j = 0; j < piece.GetLength(1); j++)
+                {
+                    if (piece[i, j] == 'p')
+                    {
+                        grid[(int)playerPosition.Y + i - 1, (int)playerPosition.X + j] = 'x';
+                    }
+                }
+            }
+
+            return grid;
+        }
+
+
+        private char[,] DeliteLine(char[,] grid)
+        {
+            List<List<char>> gridList = new List<List<char>>();
+
+            for (int i = 0; i < 20; i++)
+            {
+                List<char> temp = new List<char>();
+                for (int j = 0; j < 10; j++)
+                {
+                    temp.Add(grid[i, j]);
+                }
+                gridList.Add(temp);
+            }
+
+
+
+
+            for (int i = 0; i < gridList.Count(); i++)
+            {
+                var r = gridList[i].Where(x => x == 'x').ToList();
+                if (r.Count == 8)
+                {
+                    gridList.RemoveAt(i);
+                    gridList.Insert(0, new List<char>() { '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|' });
+                    i = 0;
+                }
+            }
+
+
+
+            char[,] result = new char[20, 10];
+
+
+            for (int i = 0; i < 20; i++)
+            {
+                for (int j = 0; j < 10; j++)
+                {
+                    result[i, j] = gridList[i][j];
+                }
+            }
+
+
+            return result;
         }
 
 

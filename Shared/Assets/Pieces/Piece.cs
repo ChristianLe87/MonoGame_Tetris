@@ -85,7 +85,7 @@ namespace Shared
                 this.playerPosition = new Vector2(this.playerPosition.X, (this.playerPosition.Y + 1));
             }
 
-            canRight = Tools.CheckIfCanMoveRight(grid, this.pieceDesign, this.playerPosition);
+            canRight = CheckIfCanMoveRight(grid, this.pieceDesign, this.playerPosition);
 
             if (canRight && previous_keyRight && keyboardState.IsKeyDown(Keys.Right))
             {
@@ -98,7 +98,7 @@ namespace Shared
                 previous_keyRight = true;
             }
 
-            canLeft = Tools.CheckIfCanMoveLeft(grid, this.pieceDesign, this.playerPosition);
+            canLeft = CheckIfCanMoveLeft(grid, this.pieceDesign, this.playerPosition);
             if (canLeft && previous_keyLeft && keyboardState.IsKeyDown(Keys.Left))
             {
                 // move left
@@ -127,7 +127,7 @@ namespace Shared
                 if (previous_keyUp == true && keyboardState.IsKeyDown(Keys.Up))
                 {
                     previous_keyUp = false;
-                    this.pieceDesign = Tools.Rotate90(this.pieceDesign);
+                    this.pieceDesign = Rotate90(this.pieceDesign);
                 }
                 else if (keyboardState.IsKeyUp(Keys.Up))
                 {
@@ -136,7 +136,7 @@ namespace Shared
             }
 
 
-            canDown = Tools.CheckIfCanMoveDown(grid, this.pieceDesign, this.playerPosition);
+            canDown = CheckIfCanMoveDown(grid, this.pieceDesign, this.playerPosition);
 
         }
 
@@ -161,6 +161,91 @@ namespace Shared
                     }
                 }
             }
+        }
+
+
+        private bool CheckIfCanMoveLeft(char[,] grid, char[,] piece_s, Vector2 playerPosition)
+        {
+            for (var pieceRow = 0; pieceRow < piece_s.GetLength(0); pieceRow++)
+            {
+                for (int pieceElement = 0; pieceElement < piece_s.GetLength(1); pieceElement++)
+                {
+                    if (piece_s[pieceRow, pieceElement] == 'p')
+                    {
+                        char rightChar = grid[(int)playerPosition.Y + pieceRow, (int)playerPosition.X + pieceElement - 1];
+                        if (rightChar == 'x' || rightChar == '|')
+                        {
+                            return false;
+                        }
+                    }
+
+                }
+            }
+            return true;
+        }
+
+
+        private bool CheckIfCanMoveRight(char[,] grid, char[,] piece_s, Vector2 playerPosition)
+        {
+            for (var pieceRow = 0; pieceRow < piece_s.GetLength(0); pieceRow++)
+            {
+                for (int pieceElement = 0; pieceElement < piece_s.GetLength(1); pieceElement++)
+                {
+                    if (piece_s[pieceRow, pieceElement] == 'p')
+                    {
+                        char leftChar = grid[(int)playerPosition.Y + pieceRow, (int)playerPosition.X + pieceElement + 1];
+                        if (leftChar == 'x' || leftChar == '|')
+                        {
+                            return false;
+                        }
+                    }
+
+                }
+            }
+            return true;
+        }
+
+
+        private bool CheckIfCanMoveDown(char[,] field, char[,] piece_s, Vector2 playerPosition)
+        {
+
+            for (int i = 0; i < piece_s.GetLength(0); i++)
+            {
+                for (int j = 0; j < piece_s.GetLength(1); j++)
+                {
+                    if (piece_s[i, j] == 'p')
+                    {
+                        char chr = field[(int)playerPosition.Y + i, (int)playerPosition.X + j];
+                        if (chr == 'x' || chr == '|' || chr == '-')
+                        {
+                            return false;
+                        }
+                    }
+                }
+            }
+
+            return true;
+        }
+
+
+        private char[,] Rotate90(char[,] piece)
+        {
+            char[,] result = new char[piece.GetLength(1), piece.GetLength(0)];
+            int newCol = 0;
+            int newRow = 0;
+
+            for (int col = piece.GetLength(1) - 1; col >= 0; col--)
+            {
+                newCol = 0;
+                for (int row = 0; row < piece.GetLength(0); row++)
+                {
+                    result[newRow, newCol] = piece[row, col];
+                    newCol++;
+                }
+                newRow++;
+            }
+
+            return result;
         }
 
 
