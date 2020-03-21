@@ -60,7 +60,7 @@ namespace Shared
 
                 if (piece.canDown == false)
                 {
-                    this.grid = BurnPieceIntoGrid(this.grid, piece.pieceDesign, piece.playerPosition);
+                    this.grid = BurnPieceIntoGrid(this.grid, piece.actualPieceDesign, piece.playerPosition);
                     piece.playerPosition = new Vector2(1, 0);
                     piece.RandPiece();
                     this.grid = DeliteLine(this.grid);

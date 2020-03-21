@@ -38,7 +38,9 @@ namespace Shared
 
 
         List<char[,]> pieces = new List<char[,]>();
-        public char[,] pieceDesign;
+        public char[,] actualPieceDesign;
+        public char[,] nextPieceDesign;
+
 
         public Vector2 playerPosition;
         public Texture2D texturePiece;
@@ -64,9 +66,19 @@ namespace Shared
             this.pieces.Add(i);
             this.pieces.Add(l);
             this.pieces.Add(j);
+            this.pieces.Add(s);
+            this.pieces.Add(z);
+            this.pieces.Add(t);
+            this.pieces.Add(o);
+            this.pieces.Add(i);
+            this.pieces.Add(l);
+            this.pieces.Add(j);
 
-            int r = new Random().Next(0, 6);
-            pieceDesign = pieces[r];
+            int r1 = new Random().Next(0, 13);
+            actualPieceDesign = pieces[r1];
+
+            int r2 = new Random().Next(0, 13);
+            nextPieceDesign = pieces[r2];
 
             this.playerPosition = position;
             this.texturePiece = Tools.CreateColorTexture(Color.Green);
@@ -85,7 +97,7 @@ namespace Shared
                 this.playerPosition = new Vector2(this.playerPosition.X, (this.playerPosition.Y + 1));
             }
 
-            canRight = CheckIfCanMoveRight(grid, this.pieceDesign, this.playerPosition);
+            canRight = CheckIfCanMoveRight(grid, this.actualPieceDesign, this.playerPosition);
 
             if (canRight && previous_keyRight && keyboardState.IsKeyDown(Keys.Right))
             {
@@ -98,7 +110,7 @@ namespace Shared
                 previous_keyRight = true;
             }
 
-            canLeft = CheckIfCanMoveLeft(grid, this.pieceDesign, this.playerPosition);
+            canLeft = CheckIfCanMoveLeft(grid, this.actualPieceDesign, this.playerPosition);
             if (canLeft && previous_keyLeft && keyboardState.IsKeyDown(Keys.Left))
             {
                 // move left
@@ -127,7 +139,7 @@ namespace Shared
                 if (previous_keyUp == true && keyboardState.IsKeyDown(Keys.Up))
                 {
                     previous_keyUp = false;
-                    this.pieceDesign = Rotate90(this.pieceDesign, grid, pieceDesign, playerPosition);
+                    this.actualPieceDesign = Rotate90(this.actualPieceDesign, grid, actualPieceDesign, playerPosition);
 
                 }
                 else if (keyboardState.IsKeyUp(Keys.Up))
@@ -137,25 +149,27 @@ namespace Shared
             }
 
 
-            canDown = CheckIfCanMoveDown(grid, this.pieceDesign, this.playerPosition);
+            canDown = CheckIfCanMoveDown(grid, this.actualPieceDesign, this.playerPosition);
 
         }
 
         internal void RandPiece()
         {
+            this.actualPieceDesign = this.nextPieceDesign;
+
             int r = new Random().Next(0, 6);
-            this.pieceDesign = pieces[r];
+            this.nextPieceDesign = pieces[r];
         }
 
         public void Draw(SpriteBatch spriteBatch, Vector2 gameGridPosition)
         {
             // draw player
             {
-                for (int row = 0; row < this.pieceDesign.GetLength(1); row++)
+                for (int row = 0; row < this.actualPieceDesign.GetLength(1); row++)
                 {
-                    for (int col = 0; col < this.pieceDesign.GetLength(0); col++)
+                    for (int col = 0; col < this.actualPieceDesign.GetLength(0); col++)
                     {
-                        if (this.pieceDesign[col, row] == 'p')
+                        if (this.actualPieceDesign[col, row] == 'p')
                         {
                             spriteBatch.Draw(texturePiece, new Rectangle((int)((this.playerPosition.X * 10) + row * 10 + gameGridPosition.X), (int)((this.playerPosition.Y * 10+ gameGridPosition.Y) + col * 10), 10, 10), Color.White);
                         }
@@ -248,7 +262,7 @@ namespace Shared
 
 
 
-            bool canRotate = CheckIfCanRotate(grid, this.pieceDesign, this.playerPosition);
+            bool canRotate = CheckIfCanRotate(grid, this.actualPieceDesign, this.playerPosition);
             if (canRotate == true)
             {
                 return result; // new

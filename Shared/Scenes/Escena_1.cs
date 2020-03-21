@@ -17,7 +17,7 @@ namespace Shared
 
         public void Update()
         {
-            nextPiece.piece = gameGrid.piece.pieceDesign;
+            nextPiece.piece = gameGrid.piece.nextPieceDesign;
             gameGrid.Update();
         }
 
