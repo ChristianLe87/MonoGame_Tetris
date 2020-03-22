@@ -19,11 +19,13 @@
     <Compile Include="$(MSBuildThisFileDirectory)Assets\Lines.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Assets\Pieces\Piece.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Assets\LevelNumber.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Tools\Text.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Tools\" />
     <Folder Include="$(MSBuildThisFileDirectory)Scenes\" />
     <Folder Include="$(MSBuildThisFileDirectory)Assets\" />
     <Folder Include="$(MSBuildThisFileDirectory)Assets\Pieces\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Assets\Assets\" />
   </ItemGroup>
 </Project>

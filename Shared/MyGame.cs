@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -20,6 +22,12 @@ namespace Shared
 
         public MyGame()
         {
+            //"/Users/christianlehnhoff/Repositorios/GitHub/MonoGame_Tetris/Shared/Assets/MyFont.xnb"
+            string relativePath =           $"../../../../MonoGame_Tetris/Shared/Assets/";
+            string absolutePath = new DirectoryInfo(Path.GetFullPath(Path.Combine(Environment.CurrentDirectory, relativePath))).ToString();
+            this.Content.RootDirectory = absolutePath;
+            contentManager = this.Content;
+
             graphicsDeviceManager = new GraphicsDeviceManager(this);
 
             // Window size

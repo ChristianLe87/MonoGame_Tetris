@@ -6,13 +6,16 @@ namespace Shared
 {
     public class Lines
     {
-        Rectangle rectangle;
+        Vector2 position;
         Texture2D backgrownd;
+        public int lines;
+        Text text;
 
-        public Lines(Rectangle rectangle)
+        public Lines(Vector2 position)
         {
-            this.rectangle = rectangle;
+            this.position = position;
             this.backgrownd = Tools.CreateColorTexture(Color.Green);
+            this.text = new Text(MyGame.contentManager, position, "MyFont", "bla");
         }
 
         public void Update(char[,] grid)
@@ -21,9 +24,10 @@ namespace Shared
         }
 
         
-        public void Draw(SpriteBatch spriteBatch, Vector2 position = default)
+        public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(backgrownd, rectangle, Color.White);
+            spriteBatch.Draw(backgrownd, new Rectangle((int)position.X, (int)position.Y, 50, 40), Color.White);
+            text.Draw(spriteBatch, Color.Red);
         }
     }
 }

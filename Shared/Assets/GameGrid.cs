@@ -141,6 +141,7 @@ namespace Shared
                     gridList.RemoveAt(i);
                     gridList.Insert(0, new List<char>() { '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|' });
                     i = 0;
+                    Score.score += 10;
                 }
             }
 
