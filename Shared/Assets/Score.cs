@@ -8,7 +8,7 @@ namespace Shared
     {
         Vector2 position;
         Texture2D backgrownd;
-        public static int score;
+        int score;
         Text text;
 
         public Score(Vector2 position)
@@ -20,7 +20,8 @@ namespace Shared
 
         public void Update(int score)
         {
-            //this.score = score;
+            this.score = score;
+            this.text.Update(this.score.ToString());
         }
 
    

@@ -19,13 +19,8 @@ namespace Shared
             this.text = new Text(MyGame.contentManager, position, "MyFont", "hello");
         }
 
-        public void Update(int score)
+        public void Update(bool bla)
         {
-
-            if(score%100 == 0)
-            {
-                levelCount++;
-            }
         }
 
 

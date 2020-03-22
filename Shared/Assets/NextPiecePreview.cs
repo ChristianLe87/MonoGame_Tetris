@@ -4,16 +4,15 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Shared
 {
-    public class NextPiece
+    public class NextPiecePreview
     {
         Vector2 position;
         Texture2D texture2D;
         Texture2D background;
-        public char[,] piece = new char[,] {   { ' ', 'p', 'p' },
-                                        { 'p', 'p', ' ' }   };
+        public char[,] piece;
 
 
-        public NextPiece(Vector2 position)
+        public NextPiecePreview(Vector2 position)
         {
             this.position = position;
             this.texture2D = Tools.CreateColorTexture(Color.Red);
@@ -21,9 +20,8 @@ namespace Shared
         }
 
 
-        public void Update()
+        public void Update(bool bla)
         {
-            throw new NotImplementedException();
         }
 
 
@@ -50,9 +48,6 @@ namespace Shared
                     }
                 }
             }
-
-
-
         }
     }
 }

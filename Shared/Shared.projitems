@@ -15,7 +15,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Scenes\Escena_1.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Assets\GameGrid.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Assets\Score.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Assets\NextPiece.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Assets\NextPiecePreview.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Assets\Lines.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Assets\Pieces\Piece.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Assets\LevelNumber.cs" />

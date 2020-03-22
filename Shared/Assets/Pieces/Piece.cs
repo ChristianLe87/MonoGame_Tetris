@@ -135,7 +135,6 @@ namespace Shared
 
             // rotate
             {
-
                 if (previous_keyUp == true && keyboardState.IsKeyDown(Keys.Up))
                 {
                     previous_keyUp = false;
@@ -147,7 +146,6 @@ namespace Shared
                     previous_keyUp = true;
                 }
             }
-
 
             canDown = CheckIfCanMoveDown(grid, this.actualPieceDesign, this.playerPosition);
 
