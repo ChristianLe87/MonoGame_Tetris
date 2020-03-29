@@ -151,7 +151,7 @@ namespace Shared
 
         }
 
-        internal void RandPiece()
+        public void RandPiece()
         {
             this.actualPieceDesign = this.nextPieceDesign;
 
@@ -177,7 +177,7 @@ namespace Shared
         }
 
 
-        private bool CheckIfCanMoveLeft(char[,] grid, char[,] piece_s, Vector2 playerPosition)
+        bool CheckIfCanMoveLeft(char[,] grid, char[,] piece_s, Vector2 playerPosition)
         {
             for (var pieceRow = 0; pieceRow < piece_s.GetLength(0); pieceRow++)
             {
@@ -198,7 +198,7 @@ namespace Shared
         }
 
 
-        private bool CheckIfCanMoveRight(char[,] grid, char[,] piece_s, Vector2 playerPosition)
+        bool CheckIfCanMoveRight(char[,] grid, char[,] piece_s, Vector2 playerPosition)
         {
             for (var pieceRow = 0; pieceRow < piece_s.GetLength(0); pieceRow++)
             {
@@ -219,7 +219,7 @@ namespace Shared
         }
 
 
-        private bool CheckIfCanMoveDown(char[,] field, char[,] piece_s, Vector2 playerPosition)
+        bool CheckIfCanMoveDown(char[,] field, char[,] piece_s, Vector2 playerPosition)
         {
 
             for (int i = 0; i < piece_s.GetLength(0); i++)
@@ -241,7 +241,7 @@ namespace Shared
         }
 
 
-        private char[,] Rotate90(char[,] piece, char[,] grid, char[,] pieceDesign, Vector2 playerPosition)
+        char[,] Rotate90(char[,] piece, char[,] grid, char[,] pieceDesign, Vector2 playerPosition)
         {
             char[,] result = new char[piece.GetLength(1), piece.GetLength(0)];
             int newCol = 0;
@@ -260,7 +260,7 @@ namespace Shared
 
 
 
-            bool canRotate = CheckIfCanRotate(grid, this.actualPieceDesign, this.playerPosition);
+            bool canRotate = CheckIfCanRotate(grid, result, this.playerPosition);
             if (canRotate == true)
             {
                 return result; // new
@@ -272,8 +272,23 @@ namespace Shared
             
         }
 
-        private bool CheckIfCanRotate(char[,] grid, char[,] pieceDesign, Vector2 playerPosition)
+        bool CheckIfCanRotate(char[,] grid, char[,] pieceDesign, Vector2 playerPosition)
         {
+            /*for (int i = 0; i < pieceDesign.GetLength(0); i++)
+            {
+                for (int j = 0; j < pieceDesign.GetLength(1); j++)
+                {
+                    if (pieceDesign[i, j] == 'p')
+                    {
+                        char chr = grid[(int)playerPosition.Y, (int)playerPosition.X];
+                        if (chr == 'x' || chr == '|' || chr == '-')
+                        {
+                            return false;
+                        }
+                    }
+                }
+            }*/
+
             return true;
         }
     }

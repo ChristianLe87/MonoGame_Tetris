@@ -9,7 +9,9 @@ namespace macOS
         {
             NSApplication.Init();
 
-            using (var game = new MyGame())
+            string relativePath = $"../../../../../../../MonoGame_Tetris/Shared/Assets/";
+
+            using (var game = new MyGame(relativePath))
             {
                 game.Run();
             }

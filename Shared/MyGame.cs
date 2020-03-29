@@ -18,12 +18,8 @@ namespace Shared
 
         Dictionary<string, Escena_1> scenes;
 
-        Texture2D test2;
-
-        public MyGame()
+        public MyGame(string relativePath)
         {
-            //"/Users/christianlehnhoff/Repositorios/GitHub/MonoGame_Tetris/Shared/Assets/MyFont.xnb"
-            string relativePath =           $"../../../../MonoGame_Tetris/Shared/Assets/";
             string absolutePath = new DirectoryInfo(Path.GetFullPath(Path.Combine(Environment.CurrentDirectory, relativePath))).ToString();
             this.Content.RootDirectory = absolutePath;
             contentManager = this.Content;
