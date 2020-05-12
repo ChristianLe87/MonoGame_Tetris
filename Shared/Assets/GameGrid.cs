@@ -105,9 +105,16 @@ namespace Shared
             {
                 for (int j = 0; j < piece.GetLength(1); j++)
                 {
-                    if (piece[i, j] == 'p')
+                    try
                     {
-                        grid[(int)playerPosition.Y + i - 1, (int)playerPosition.X + j] = 'x';
+                        if (piece[i, j] == 'p')
+                        {
+                            grid[(int)playerPosition.Y + i - 1, (int)playerPosition.X + j] = 'x';
+                        }
+                    }
+                    catch
+                    {
+                        return grid;
                     }
                 }
             }

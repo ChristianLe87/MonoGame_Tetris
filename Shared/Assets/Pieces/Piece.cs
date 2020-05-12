@@ -274,20 +274,21 @@ namespace Shared
 
         bool CheckIfCanRotate(char[,] grid, char[,] pieceDesign, Vector2 playerPosition)
         {
-            /*for (int i = 0; i < pieceDesign.GetLength(0); i++)
+
+            for (int i = 0; i < pieceDesign.GetLength(0); i++)
             {
                 for (int j = 0; j < pieceDesign.GetLength(1); j++)
                 {
                     if (pieceDesign[i, j] == 'p')
                     {
-                        char chr = grid[(int)playerPosition.Y, (int)playerPosition.X];
+                        char chr = grid[(int)playerPosition.Y, (int)playerPosition.X + j];
                         if (chr == 'x' || chr == '|' || chr == '-')
                         {
                             return false;
                         }
                     }
                 }
-            }*/
+            }
 
             return true;
         }
