@@ -5,19 +5,22 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Shared
 {
-    public class Text
+    internal class Text
     {
         string fileName;
         SpriteFont spriteFont;
         string displayText;
-        Vector2 position;
+        Rectangle rectangle;
+        HorizontalAlignment horizontalAlignment;
+        VerticalAlignment verticalAlignment;
 
-        public Text(ContentManager contentManager, Vector2 position, string fileName, string displayText)
+        public Text(Rectangle rectangle, string fileName, string displayText, HorizontalAlignment horizontalAlignment, VerticalAlignment verticalAlignment)
         {
-            this.fileName = fileName;
-            this.spriteFont = contentManager.Load<SpriteFont>(fileName);
-            this.position = position;
+            this.rectangle = rectangle;
+            this.spriteFont = MyGame.contentManager.Load<SpriteFont>(fileName);
             this.displayText = displayText;
+            this.horizontalAlignment = horizontalAlignment;
+            this.verticalAlignment = verticalAlignment;
         }
 
         public void Update(string displayText)
@@ -27,7 +30,33 @@ namespace Shared
 
         public void Draw(SpriteBatch spriteBatch, Color color)
         {
-            spriteBatch.DrawString(spriteFont, displayText, position, color);
+            if (horizontalAlignment == HorizontalAlignment.Center)
+            {
+                int spaceLeft = (rectangle.Width - (int)spriteFont.MeasureString(displayText).Length()) / 2;
+
+                if (verticalAlignment == VerticalAlignment.Center)
+                {
+                    int spaceTop = (rectangle.Height - spriteFont.LineSpacing) / 2;
+
+                    Vector2 textPosition = new Vector2(rectangle.X + spaceLeft, rectangle.Y + spaceTop);
+                    spriteBatch.DrawString(spriteFont, displayText, textPosition, color);
+                }
+            }
+
         }
+    }
+
+    internal enum HorizontalAlignment
+    {
+        Right,
+        Center,
+        Left
+    }
+
+    internal enum VerticalAlignment
+    {
+        Top,
+        Center,
+        Bottom
     }
 }

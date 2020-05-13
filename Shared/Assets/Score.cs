@@ -6,16 +6,16 @@ namespace Shared
 {
     public class Score
     {
-        Vector2 position;
+        Rectangle rectangle;
         Texture2D backgrownd;
         int score;
         Text text;
 
-        public Score(Vector2 position)
+        public Score(Rectangle rectangle)
         {
-            this.position = position;
+            this.rectangle = rectangle;
             this.backgrownd = Tools.CreateColorTexture(Color.YellowGreen);
-            this.text = new Text(MyGame.contentManager, position, "MyFont", "world");
+            this.text = new Text(new Rectangle(rectangle.X, rectangle.Y, rectangle.Width, 10), WK.Font.Arial_10, "Score", HorizontalAlignment.Center, VerticalAlignment.Center);
         }
 
         public void Update(int score)
@@ -27,7 +27,7 @@ namespace Shared
    
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(backgrownd, new Rectangle((int)position.X, (int)position.Y,50,50), Color.White);
+            spriteBatch.Draw(backgrownd, rectangle, Color.White);
             text.Draw(spriteBatch, Color.Green);
         }
     }

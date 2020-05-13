@@ -8,35 +8,6 @@ namespace Shared
 {
     public class Piece
     {
-
-
-        char[,] s = new char[,] {   { ' ', 'p', 'p' },
-                                    { 'p', 'p', ' ' }   };
-
-        char[,] z = new char[,] {   { 'p', 'p', ' ' },
-                                    { ' ', 'p', 'p' }   };
-
-        char[,] t = new char[,] {   { 'p', 'p', 'p' },
-                                    { ' ', 'p', ' ' }   };
-
-        char[,] o = new char[,] {   { 'p', 'p' },
-                                    { 'p', 'p' }   };
-
-        char[,] i = new char[,] {   { 'p' },
-                                    { 'p' },
-                                    { 'p' },
-                                    { 'p' }   };
-
-        char[,] l = new char[,] {   { 'p', ' ' },
-                                    { 'p', ' ' },
-                                    { 'p', 'p' }   };
-
-        char[,] j = new char[,] {   { ' ', 'p' },
-                                    { ' ', 'p' },
-                                    { 'p', 'p' }   };
-
-
-
         List<char[,]> pieces = new List<char[,]>();
         public char[,] actualPieceDesign;
         public char[,] nextPieceDesign;
@@ -59,20 +30,20 @@ namespace Shared
 
         public Piece(Vector2 position)
         {
-            this.pieces.Add(s);
-            this.pieces.Add(z);
-            this.pieces.Add(t);
-            this.pieces.Add(o);
-            this.pieces.Add(i);
-            this.pieces.Add(l);
-            this.pieces.Add(j);
-            this.pieces.Add(s);
-            this.pieces.Add(z);
-            this.pieces.Add(t);
-            this.pieces.Add(o);
-            this.pieces.Add(i);
-            this.pieces.Add(l);
-            this.pieces.Add(j);
+            this.pieces.Add(WK.Piece.S);
+            this.pieces.Add(WK.Piece.Z);
+            this.pieces.Add(WK.Piece.T);
+            this.pieces.Add(WK.Piece.O);
+            this.pieces.Add(WK.Piece.I);
+            this.pieces.Add(WK.Piece.L);
+            this.pieces.Add(WK.Piece.J);
+            this.pieces.Add(WK.Piece.S);
+            this.pieces.Add(WK.Piece.Z);
+            this.pieces.Add(WK.Piece.T);
+            this.pieces.Add(WK.Piece.O);
+            this.pieces.Add(WK.Piece.I);
+            this.pieces.Add(WK.Piece.L);
+            this.pieces.Add(WK.Piece.J);
 
             int r1 = new Random().Next(0, 13);
             actualPieceDesign = pieces[r1];
@@ -169,7 +140,7 @@ namespace Shared
                     {
                         if (this.actualPieceDesign[col, row] == 'p')
                         {
-                            spriteBatch.Draw(texturePiece, new Rectangle((int)((this.playerPosition.X * 10) + row * 10 + gameGridPosition.X), (int)((this.playerPosition.Y * 10+ gameGridPosition.Y) + col * 10), 10, 10), Color.White);
+                            spriteBatch.Draw(texturePiece, new Rectangle((int)((this.playerPosition.X * 10) + row * 10 + gameGridPosition.X), (int)((this.playerPosition.Y * 10 + gameGridPosition.Y) + col * 10), 10, 10), Color.White);
                         }
                     }
                 }
@@ -269,7 +240,7 @@ namespace Shared
             {
                 return piece; // original
             }
-            
+
         }
 
         bool CheckIfCanRotate(char[,] grid, char[,] pieceDesign, Vector2 playerPosition)

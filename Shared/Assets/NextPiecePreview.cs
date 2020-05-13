@@ -6,17 +6,17 @@ namespace Shared
 {
     public class NextPiecePreview
     {
-        Vector2 position;
-        Texture2D texture2D;
+        Rectangle rectangle;
         Texture2D background;
+        Texture2D nextPieceTexture;
         public char[,] piece;
 
 
-        public NextPiecePreview(Vector2 position)
+        public NextPiecePreview(Rectangle rectangle)
         {
-            this.position = position;
-            this.texture2D = Tools.CreateColorTexture(Color.Red);
+            this.rectangle = rectangle;
             this.background = Tools.CreateColorTexture(Color.Pink);
+            this.nextPieceTexture = Tools.CreateColorTexture(Color.Blue);
         }
 
 
@@ -31,7 +31,7 @@ namespace Shared
 
             // draw background
             {
-                spriteBatch.Draw(background, new Rectangle((int)position.X, (int)position.Y, 50, 50), Color.White);
+                spriteBatch.Draw(background, rectangle, Color.White);
             }
 
 
@@ -43,7 +43,7 @@ namespace Shared
                     {
                         if (this.piece[col, row] == 'p')
                         {
-                            spriteBatch.Draw(texture2D, new Rectangle((int)(row * 10 + position.X), (int)(col * 10 + position.Y), 10, 10), Color.White);
+                            spriteBatch.Draw(nextPieceTexture, new Rectangle((row * 10 + rectangle.X), (col * 10 + rectangle.Y), 10, 10), Color.White);
                         }
                     }
                 }
