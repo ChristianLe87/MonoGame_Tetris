@@ -157,7 +157,7 @@ namespace Shared
                     if (piece_s[pieceRow, pieceElement] == 'p')
                     {
                         char rightChar = grid[(int)playerPosition.Y + pieceRow, (int)playerPosition.X + pieceElement - 1];
-                        if (rightChar == 'x' || rightChar == '|')
+                        if (rightChar != ' ')// rightChar == 'x' || rightChar == '|')
                         {
                             return false;
                         }
@@ -178,7 +178,7 @@ namespace Shared
                     if (piece_s[pieceRow, pieceElement] == 'p')
                     {
                         char leftChar = grid[(int)playerPosition.Y + pieceRow, (int)playerPosition.X + pieceElement + 1];
-                        if (leftChar == 'x' || leftChar == '|')
+                        if (leftChar != ' ')// leftChar == 'x' || leftChar == '|')
                         {
                             return false;
                         }
@@ -200,7 +200,7 @@ namespace Shared
                     if (piece_s[i, j] == 'p')
                     {
                         char chr = field[(int)playerPosition.Y + i, (int)playerPosition.X + j];
-                        if (chr == 'x' || chr == '|' || chr == '-')
+                        if (chr != ' ')// chr == 'x' || chr == '|' || chr == '-')
                         {
                             return false;
                         }
@@ -253,7 +253,7 @@ namespace Shared
                     if (pieceDesign[i, j] == 'p')
                     {
                         char chr = grid[(int)playerPosition.Y, (int)playerPosition.X + j];
-                        if (chr == 'x' || chr == '|' || chr == '-')
+                        if ((chr == ' ') == false)
                         {
                             return false;
                         }
