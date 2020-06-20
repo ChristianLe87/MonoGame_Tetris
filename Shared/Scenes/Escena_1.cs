@@ -10,10 +10,12 @@ namespace Shared
         //Score score;
         //LevelNumber levelNumber;
         Lines lines;
+        GameOver gameOver;
 
         public static int lineCount;
         public static int scoreCount;
         public static int levelCount;
+        public static bool isGameOver;
 
         public Escena_1()
         {
@@ -22,15 +24,21 @@ namespace Shared
             //score = new Score(new Rectangle(120, 70, 50, 50));
             //levelNumber = new LevelNumber(new Vector2(120,130));
             lines = new Lines(new Rectangle(120, 160, 50, 50));
+            gameOver = new GameOver(new Rectangle(50, 80, 80, 30));
         }
 
         public void Update()
         {
-            gameGrid.Update();
-            nextPiecePreview.Update(gameGrid.piece.nextPieceDesign);
-            //score.Update(1);
-            //levelNumber.Update();
-            lines.Update(lineCount);
+            if(isGameOver == false)
+            {
+                gameGrid.Update();
+                nextPiecePreview.Update(gameGrid.piece.nextPieceDesign);
+                //score.Update(1);
+                //levelNumber.Update();
+                lines.Update(lineCount);
+            }
+
+            gameOver.Update(isGameOver);
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -40,6 +48,7 @@ namespace Shared
             //score.Draw(spriteBatch);
             //levelNumber.Draw(spriteBatch);
             lines.Draw(spriteBatch);
+            gameOver.Draw(spriteBatch);
         }
     }
 }

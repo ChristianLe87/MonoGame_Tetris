@@ -38,10 +38,18 @@ namespace Shared
 
                 if (piece.canDown == false)
                 {
-                    this.grid = BurnPieceIntoGrid(this.grid, piece.actualPieceDesign, piece.playerPosition);
-                    piece.playerPosition = new Vector2(4, 0);
-                    piece.RandPiece();
-                    this.grid = DeliteLine(this.grid);
+                    // game over
+                    if(piece.playerPosition.Y < 1)
+                    {
+                        Escena_1.isGameOver = true;
+                    }
+                    else
+                    {
+                        this.grid = BurnPieceIntoGrid(this.grid, piece.actualPieceDesign, piece.playerPosition);
+                        piece.playerPosition = new Vector2(4, 0);
+                        piece.RandPiece();
+                        this.grid = DeliteLine(this.grid);
+                    }
                 }
             }
         }
