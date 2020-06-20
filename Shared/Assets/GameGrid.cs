@@ -23,7 +23,7 @@ namespace Shared
             texturePlayer = Tools.CreateColorTexture(Color.Red);
             textureBorder = Tools.CreateColorTexture(Color.DarkGreen);
 
-            piece = new Piece(new Vector2(1, 0));
+            piece = new Piece(new Vector2(4, 0));
 
         }
 
@@ -39,7 +39,7 @@ namespace Shared
                 if (piece.canDown == false)
                 {
                     this.grid = BurnPieceIntoGrid(this.grid, piece.actualPieceDesign, piece.playerPosition);
-                    piece.playerPosition = new Vector2(1, 0);
+                    piece.playerPosition = new Vector2(4, 0);
                     piece.RandPiece();
                     this.grid = DeliteLine(this.grid);
                 }
