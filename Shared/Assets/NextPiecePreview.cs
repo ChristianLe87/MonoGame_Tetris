@@ -9,7 +9,7 @@ namespace Shared
         Rectangle rectangle;
         Texture2D background;
         Texture2D nextPieceTexture;
-        public char[,] piece;
+        char[,] piece;
 
 
         public NextPiecePreview(Rectangle rectangle)
@@ -20,10 +20,10 @@ namespace Shared
         }
 
 
-        public void Update(bool bla)
+        internal void Update(char[,] nextPieceDesign)
         {
+            this.piece = nextPieceDesign;
         }
-
 
         public void Draw(SpriteBatch spriteBatch)
         {
@@ -49,5 +49,7 @@ namespace Shared
                 }
             }
         }
+
+     
     }
 }
