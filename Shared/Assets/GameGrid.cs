@@ -21,7 +21,7 @@ namespace Shared
             this.GameGridPosition = GameGridPosition;
             textureBackgrownd = Tools.CreateColorTexture(Color.Pink);
             texturePlayer = Tools.CreateColorTexture(Color.Red);
-            textureBorder = Tools.CreateColorTexture(Color.DarkGreen);
+            textureBorder = Tools.CreateColorTexture(Color.Brown);
 
             piece = new Piece(new Vector2(4, 0));
 
@@ -71,6 +71,27 @@ namespace Shared
                             case 'x':
                                 spriteBatch.Draw(this.texturePlayer, new Rectangle(row * 10 + (int)GameGridPosition.X, col * 10 + (int)GameGridPosition.Y, 10, 10), Color.White);
                                 break;
+                            case 's':
+                                spriteBatch.Draw(Piece.texture_S, new Rectangle(row * 10 + (int)GameGridPosition.X, col * 10 + (int)GameGridPosition.Y, 10, 10), Color.White);
+                                break;
+                            case 'z':
+                                spriteBatch.Draw(Piece.texture_Z, new Rectangle(row * 10 + (int)GameGridPosition.X, col * 10 + (int)GameGridPosition.Y, 10, 10), Color.White);
+                                break;
+                            case 't':
+                                spriteBatch.Draw(Piece.texture_T, new Rectangle(row * 10 + (int)GameGridPosition.X, col * 10 + (int)GameGridPosition.Y, 10, 10), Color.White);
+                                break;
+                            case 'o':
+                                spriteBatch.Draw(Piece.texture_O, new Rectangle(row * 10 + (int)GameGridPosition.X, col * 10 + (int)GameGridPosition.Y, 10, 10), Color.White);
+                                break;
+                            case 'i':
+                                spriteBatch.Draw(Piece.texture_I, new Rectangle(row * 10 + (int)GameGridPosition.X, col * 10 + (int)GameGridPosition.Y, 10, 10), Color.White);
+                                break;
+                            case 'l':
+                                spriteBatch.Draw(Piece.texture_L, new Rectangle(row * 10 + (int)GameGridPosition.X, col * 10 + (int)GameGridPosition.Y, 10, 10), Color.White);
+                                break;
+                            case 'j':
+                                spriteBatch.Draw(Piece.texture_J, new Rectangle(row * 10 + (int)GameGridPosition.X, col * 10 + (int)GameGridPosition.Y, 10, 10), Color.White);
+                                break;
                             default:
                                 spriteBatch.Draw(this.textureBorder, new Rectangle(row * 10 + (int)GameGridPosition.X, col * 10 + (int)GameGridPosition.Y, 10, 10), Color.White);
                                 break;
@@ -93,9 +114,9 @@ namespace Shared
                 {
                     try
                     {
-                        if (piece[i, j] == 'p')
+                        if (piece[i, j] != ' ')
                         {
-                            grid[(int)playerPosition.Y + i - 1, (int)playerPosition.X + j] = 'x';
+                            grid[(int)playerPosition.Y + i - 1, (int)playerPosition.X + j] = piece[i, j];
                         }
                     }
                     catch
@@ -126,10 +147,10 @@ namespace Shared
 
 
 
-            for (int i = 0; i < gridList.Count(); i++)
+            for (int i = 0; i < gridList.Count() - 1; i++)
             {
-                var r = gridList[i].Where(x => x == 'x').ToList();
-                if (r.Count == 8)
+                var r = gridList[i].Where(x => x == ' ').ToList();
+                if (r.Count == 0)
                 {
                     gridList.RemoveAt(i);
                     gridList.Insert(0, new List<char>() { '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|' });

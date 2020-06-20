@@ -1,33 +1,35 @@
-﻿namespace Shared
+﻿using Microsoft.Xna.Framework;
+
+namespace Shared
 {
     public class WK
     {
         public class Piece
         {
-            public static readonly char[,] S = new char[,] {    { ' ', 'p', 'p' },
-                                                                { 'p', 'p', ' ' }   };
+            public static readonly char[,] S = new char[,] {    { ' ', 's', 's' },
+                                                                { 's', 's', ' ' }   };
 
-            public static readonly char[,] Z = new char[,] {    { 'p', 'p', ' ' },
-                                                                { ' ', 'p', 'p' }   };
+            public static readonly char[,] Z = new char[,] {    { 'z', 'z', ' ' },
+                                                                { ' ', 'z', 'z' }   };
 
-            public static readonly char[,] T = new char[,] {    { 'p', 'p', 'p' },
-                                                                { ' ', 'p', ' ' }   };
+            public static readonly char[,] T = new char[,] {    { 't', 't', 't' },
+                                                                { ' ', 't', ' ' }   };
 
-            public static readonly char[,] O = new char[,] {    { 'p', 'p' },
-                                                                { 'p', 'p' }   };
+            public static readonly char[,] O = new char[,] {    { 'o', 'o' },
+                                                                { 'o', 'o' }   };
 
-            public static readonly char[,] I = new char[,] {    { 'p' },
-                                                                { 'p' },
-                                                                { 'p' },
-                                                                { 'p' }   };
+            public static readonly char[,] I = new char[,] {    { 'i' },
+                                                                { 'i' },
+                                                                { 'i' },
+                                                                { 'i' }   };
 
-            public static readonly char[,] L = new char[,] {    { 'p', ' ' },
-                                                                { 'p', ' ' },
-                                                                { 'p', 'p' }   };
+            public static readonly char[,] L = new char[,] {    { 'l', ' ' },
+                                                                { 'l', ' ' },
+                                                                { 'l', 'l' }   };
 
-            public static readonly char[,] J = new char[,] {    { ' ', 'p' },
-                                                                { ' ', 'p' },
-                                                                { 'p', 'p' }   };
+            public static readonly char[,] J = new char[,] {    { ' ', 'j' },
+                                                                { ' ', 'j' },
+                                                                { 'j', 'j' }   };
         }
 
         public class Grid

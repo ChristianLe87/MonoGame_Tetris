@@ -12,10 +12,15 @@ namespace Shared
         public char[,] actualPieceDesign;
         public char[,] nextPieceDesign;
 
-
         public Vector2 playerPosition;
-        public Texture2D texturePiece;
 
+        public static readonly Texture2D texture_S = Tools.CreateColorTexture(Color.LightGreen);
+        public static readonly Texture2D texture_Z = Tools.CreateColorTexture(Color.Red);
+        public static readonly Texture2D texture_T = Tools.CreateColorTexture(Color.Purple);
+        public static readonly Texture2D texture_O = Tools.CreateColorTexture(Color.Yellow);
+        public static readonly Texture2D texture_I = Tools.CreateColorTexture(Color.Aqua);
+        public static readonly Texture2D texture_L = Tools.CreateColorTexture(Color.Orange);
+        public static readonly Texture2D texture_J = Tools.CreateColorTexture(Color.Blue);
 
         int framesCount = 0;
 
@@ -52,7 +57,6 @@ namespace Shared
             nextPieceDesign = pieces[r2];
 
             this.playerPosition = position;
-            this.texturePiece = Tools.CreateColorTexture(Color.Green);
 
         }
 
@@ -138,9 +142,34 @@ namespace Shared
                 {
                     for (int col = 0; col < this.actualPieceDesign.GetLength(0); col++)
                     {
-                        if (this.actualPieceDesign[col, row] == 'p')
+                        if (this.actualPieceDesign[col, row] != ' ')
                         {
-                            spriteBatch.Draw(texturePiece, new Rectangle((int)((this.playerPosition.X * 10) + row * 10 + gameGridPosition.X), (int)((this.playerPosition.Y * 10 + gameGridPosition.Y) + col * 10), 10, 10), Color.White);
+                            switch (this.actualPieceDesign[col, row])
+                            {
+                                case 's':
+                                    spriteBatch.Draw(Piece.texture_S, new Rectangle((int)((this.playerPosition.X * 10) + row * 10 + gameGridPosition.X), (int)((this.playerPosition.Y * 10 + gameGridPosition.Y) + col * 10), 10, 10), Color.White);
+                                    break;
+                                case 'z':
+                                    spriteBatch.Draw(Piece.texture_Z, new Rectangle((int)((this.playerPosition.X * 10) + row * 10 + gameGridPosition.X), (int)((this.playerPosition.Y * 10 + gameGridPosition.Y) + col * 10), 10, 10), Color.White);
+                                    break;
+                                case 't':
+                                    spriteBatch.Draw(Piece.texture_T, new Rectangle((int)((this.playerPosition.X * 10) + row * 10 + gameGridPosition.X), (int)((this.playerPosition.Y * 10 + gameGridPosition.Y) + col * 10), 10, 10), Color.White);
+                                    break;
+                                case 'o':
+                                    spriteBatch.Draw(Piece.texture_O, new Rectangle((int)((this.playerPosition.X * 10) + row * 10 + gameGridPosition.X), (int)((this.playerPosition.Y * 10 + gameGridPosition.Y) + col * 10), 10, 10), Color.White);
+                                    break;
+                                case 'i':
+                                    spriteBatch.Draw(Piece.texture_I, new Rectangle((int)((this.playerPosition.X * 10) + row * 10 + gameGridPosition.X), (int)((this.playerPosition.Y * 10 + gameGridPosition.Y) + col * 10), 10, 10), Color.White);
+                                    break;
+                                case 'l':
+                                    spriteBatch.Draw(Piece.texture_L, new Rectangle((int)((this.playerPosition.X * 10) + row * 10 + gameGridPosition.X), (int)((this.playerPosition.Y * 10 + gameGridPosition.Y) + col * 10), 10, 10), Color.White);
+                                    break;
+                                case 'j':
+                                    spriteBatch.Draw(Piece.texture_J, new Rectangle((int)((this.playerPosition.X * 10) + row * 10 + gameGridPosition.X), (int)((this.playerPosition.Y * 10 + gameGridPosition.Y) + col * 10), 10, 10), Color.White);
+                                    break;
+                                default:
+                                    break;
+                            }
                         }
                     }
                 }
@@ -154,7 +183,7 @@ namespace Shared
             {
                 for (int pieceElement = 0; pieceElement < piece_s.GetLength(1); pieceElement++)
                 {
-                    if (piece_s[pieceRow, pieceElement] == 'p')
+                    if (piece_s[pieceRow, pieceElement] != ' ')
                     {
                         char rightChar = grid[(int)playerPosition.Y + pieceRow, (int)playerPosition.X + pieceElement - 1];
                         if (rightChar != ' ')// rightChar == 'x' || rightChar == '|')
@@ -175,7 +204,7 @@ namespace Shared
             {
                 for (int pieceElement = 0; pieceElement < piece_s.GetLength(1); pieceElement++)
                 {
-                    if (piece_s[pieceRow, pieceElement] == 'p')
+                    if (piece_s[pieceRow, pieceElement] != ' ')
                     {
                         char leftChar = grid[(int)playerPosition.Y + pieceRow, (int)playerPosition.X + pieceElement + 1];
                         if (leftChar != ' ')// leftChar == 'x' || leftChar == '|')
@@ -197,7 +226,7 @@ namespace Shared
             {
                 for (int j = 0; j < piece_s.GetLength(1); j++)
                 {
-                    if (piece_s[i, j] == 'p')
+                    if (piece_s[i, j] != ' ')
                     {
                         char chr = field[(int)playerPosition.Y + i, (int)playerPosition.X + j];
                         if (chr != ' ')// chr == 'x' || chr == '|' || chr == '-')
@@ -250,7 +279,7 @@ namespace Shared
             {
                 for (int j = 0; j < pieceDesign.GetLength(1); j++)
                 {
-                    if (pieceDesign[i, j] == 'p')
+                    if (pieceDesign[i, j] != ' ')
                     {
                         char chr = grid[(int)playerPosition.Y, (int)playerPosition.X + j];
                         if ((chr == ' ') == false)

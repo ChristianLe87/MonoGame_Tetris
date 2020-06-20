@@ -41,9 +41,34 @@ namespace Shared
                 {
                     for (int col = 0; col < this.piece.GetLength(0); col++)
                     {
-                        if (this.piece[col, row] == 'p')
+                        if (this.piece[col, row] != ' ')
                         {
-                            spriteBatch.Draw(nextPieceTexture, new Rectangle((row * 10 + rectangle.X) + 10, (col * 10 + rectangle.Y) + 10, 10, 10), Color.White);
+                            switch (this.piece[col, row])
+                            {
+                                case 's':
+                                    spriteBatch.Draw(Piece.texture_S, new Rectangle((row * 10 + rectangle.X) + 10, (col * 10 + rectangle.Y) + 10, 10, 10), Color.White);
+                                    break;
+                                case 'z':
+                                    spriteBatch.Draw(Piece.texture_Z, new Rectangle((row * 10 + rectangle.X) + 10, (col * 10 + rectangle.Y) + 10, 10, 10), Color.White);
+                                    break;
+                                case 't':
+                                    spriteBatch.Draw(Piece.texture_T, new Rectangle((row * 10 + rectangle.X) + 10, (col * 10 + rectangle.Y) + 10, 10, 10), Color.White);
+                                    break;
+                                case 'o':
+                                    spriteBatch.Draw(Piece.texture_O, new Rectangle((row * 10 + rectangle.X) + 10, (col * 10 + rectangle.Y) + 10, 10, 10), Color.White);
+                                    break;
+                                case 'i':
+                                    spriteBatch.Draw(Piece.texture_I, new Rectangle((row * 10 + rectangle.X) + 10, (col * 10 + rectangle.Y) + 10, 10, 10), Color.White);
+                                    break;
+                                case 'l':
+                                    spriteBatch.Draw(Piece.texture_L, new Rectangle((row * 10 + rectangle.X) + 10, (col * 10 + rectangle.Y) + 10, 10, 10), Color.White);
+                                    break;
+                                case 'j':
+                                    spriteBatch.Draw(Piece.texture_J, new Rectangle((row * 10 + rectangle.X) + 10, (col * 10 + rectangle.Y) + 10, 10, 10), Color.White);
+                                    break;
+                                default:
+                                    break;
+                            }
                         }
                     }
                 }
