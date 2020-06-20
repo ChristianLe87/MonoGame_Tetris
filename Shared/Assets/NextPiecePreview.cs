@@ -43,7 +43,7 @@ namespace Shared
                     {
                         if (this.piece[col, row] == 'p')
                         {
-                            spriteBatch.Draw(nextPieceTexture, new Rectangle((row * 10 + rectangle.X), (col * 10 + rectangle.Y), 10, 10), Color.White);
+                            spriteBatch.Draw(nextPieceTexture, new Rectangle((row * 10 + rectangle.X) + 10, (col * 10 + rectangle.Y) + 10, 10, 10), Color.White);
                         }
                     }
                 }
