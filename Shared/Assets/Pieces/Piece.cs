@@ -12,7 +12,7 @@ namespace Shared
         public char[,] actualPieceDesign;
         public char[,] nextPieceDesign;
 
-        public Vector2 playerPosition;
+        public Vector2 playerPosition { get;  set; }
 
         public static readonly Texture2D texture_S = Tools.CreateColorTexture(Color.LightGreen);
         public static readonly Texture2D texture_Z = Tools.CreateColorTexture(Color.Red);
@@ -33,7 +33,7 @@ namespace Shared
         bool previous_keyRight = true;
         bool previous_keyLeft = true;
 
-        public Piece(Vector2 position)
+        public Piece()
         {
             this.pieces.Add(WK.Piece.S);
             this.pieces.Add(WK.Piece.Z);
@@ -56,8 +56,7 @@ namespace Shared
             int r2 = new Random().Next(0, 13);
             nextPieceDesign = pieces[r2];
 
-            this.playerPosition = position;
-
+            this.playerPosition = new Vector2(4, 0);
         }
 
 

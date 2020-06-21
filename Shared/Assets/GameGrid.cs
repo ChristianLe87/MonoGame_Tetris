@@ -23,8 +23,7 @@ namespace Shared
             texturePlayer = Tools.CreateColorTexture(Color.Red);
             textureBorder = Tools.CreateColorTexture(Color.Brown);
 
-            piece = new Piece(new Vector2(4, 0));
-
+            piece = new Piece();
         }
 
 
@@ -35,11 +34,10 @@ namespace Shared
 
             // burn grid
             {
-
                 if (piece.canDown == false)
                 {
                     // game over
-                    if(piece.playerPosition.Y < 1)
+                    if (piece.playerPosition.Y < 1)
                     {
                         Escena_1.isGameOver = true;
                     }
@@ -132,6 +130,8 @@ namespace Shared
 
         private char[,] DeliteLine(char[,] grid)
         {
+            int deletedLines = 0;
+
             List<List<char>> gridList = new List<List<char>>();
 
             for (int i = 0; i < 20; i++)
@@ -152,6 +152,7 @@ namespace Shared
                 var r = gridList[i].Where(x => x == ' ').ToList();
                 if (r.Count == 0)
                 {
+                    deletedLines++;
                     gridList.RemoveAt(i);
                     gridList.Insert(0, new List<char>() { '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|' });
                     i = 0;
@@ -173,9 +174,26 @@ namespace Shared
             }
 
 
+            // Change score
+            UpdateScore(deletedLines);
+
+
             return result;
         }
 
 
+        private void UpdateScore(int deletedLines)
+        {
+            if (deletedLines == 0)
+                Escena_1.scoreCount += 0;
+            else if (deletedLines == 1)
+                Escena_1.scoreCount += 40;
+            else if (deletedLines == 2)
+                Escena_1.scoreCount += 100;
+            else if (deletedLines == 3)
+                Escena_1.scoreCount += 300;
+            else if (deletedLines == 4)
+                Escena_1.scoreCount += 1200;
+        }
     }
 }

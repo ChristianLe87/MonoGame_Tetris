@@ -7,7 +7,7 @@ namespace Shared
     {
         GameGrid gameGrid;
         NextPiecePreview nextPiecePreview;
-        //Score score;
+        Score score;
         //LevelNumber levelNumber;
         Lines lines;
         GameOver gameOver;
@@ -21,7 +21,7 @@ namespace Shared
         {
             gameGrid = new GameGrid(new Vector2(10, 10));
             nextPiecePreview = new NextPiecePreview(new Rectangle(120, 10, 50, 50));
-            //score = new Score(new Rectangle(120, 70, 50, 50));
+            score = new Score(new Rectangle(120, 70, 50, 50));
             //levelNumber = new LevelNumber(new Vector2(120,130));
             lines = new Lines(new Rectangle(120, 160, 50, 50));
             gameOver = new GameOver(new Rectangle(50, 80, 80, 30));
@@ -33,7 +33,7 @@ namespace Shared
             {
                 gameGrid.Update();
                 nextPiecePreview.Update(gameGrid.piece.nextPieceDesign);
-                //score.Update(1);
+                score.Update(scoreCount);
                 //levelNumber.Update();
                 lines.Update(lineCount);
             }
@@ -45,7 +45,7 @@ namespace Shared
         {
             gameGrid.Draw(spriteBatch);
             nextPiecePreview.Draw(spriteBatch);
-            //score.Draw(spriteBatch);
+            score.Draw(spriteBatch);
             //levelNumber.Draw(spriteBatch);
             lines.Draw(spriteBatch);
             gameOver.Draw(spriteBatch);
