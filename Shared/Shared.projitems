@@ -21,6 +21,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Assets\LevelNumber.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Tools\Text.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Assets\GameOver.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Scenes\MenuScene.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Tools\IScene.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Tools\" />

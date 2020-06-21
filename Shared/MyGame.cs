@@ -16,7 +16,9 @@ namespace Shared
         public static GraphicsDeviceManager graphicsDeviceManager;
         public static ContentManager contentManager;
 
-        Dictionary<string, Escena_1> scenes;
+        Dictionary<string, IScene> scenes;
+
+        string actualScene;
 
         public MyGame(string relativePath)
         {
@@ -41,11 +43,14 @@ namespace Shared
 
         protected override void LoadContent()
         {
+            actualScene = WK.Scene.MenuScene;
+
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            scenes = new Dictionary<string, Escena_1>()
+            scenes = new Dictionary<string, IScene>()
             {
-                { "Escena_1", new Escena_1() }
+                { WK.Scene.MenuScene, new MenuScene() },
+                { WK.Scene.GameScene, new Escena_1() }
             };
         }
 
@@ -53,7 +58,7 @@ namespace Shared
         protected override void Update(GameTime gameTime)
         {
             // code
-            scenes["Escena_1"].Update();
+            scenes[actualScene].Update();
 
             base.Update(gameTime);
         }
@@ -65,7 +70,7 @@ namespace Shared
             spriteBatch.Begin();
 
             // code
-            scenes["Escena_1"].Draw(spriteBatch);
+            scenes[actualScene].Draw(spriteBatch);
 
             spriteBatch.End();
             base.Draw(gameTime);

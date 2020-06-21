@@ -4,6 +4,12 @@ namespace Shared
 {
     public class WK
     {
+        public class Scene
+        {
+            public static readonly string MenuScene = "Menu";
+            public static readonly string GameScene = "Escena_1";
+        }
+
         public class Piece
         {
             public static readonly char[,] S = new char[,] {    { ' ', 's', 's' },
