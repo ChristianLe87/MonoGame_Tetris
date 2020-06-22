@@ -14,13 +14,13 @@ namespace Shared
 
         public Vector2 playerPosition { get;  set; }
 
-        public static readonly Texture2D texture_S = Tools.CreateColorTexture(Color.LightGreen);
+        public static readonly Texture2D texture_S = Tools.CreateColorTexture(Color.Green);
         public static readonly Texture2D texture_Z = Tools.CreateColorTexture(Color.Red);
-        public static readonly Texture2D texture_T = Tools.CreateColorTexture(Color.Purple);
+        public static readonly Texture2D texture_T = Tools.CreateColorTexture(Color.Magenta);
         public static readonly Texture2D texture_O = Tools.CreateColorTexture(Color.Yellow);
-        public static readonly Texture2D texture_I = Tools.CreateColorTexture(Color.Aqua);
+        public static readonly Texture2D texture_I = Tools.CreateColorTexture(Color.LightBlue);
         public static readonly Texture2D texture_L = Tools.CreateColorTexture(Color.Orange);
-        public static readonly Texture2D texture_J = Tools.CreateColorTexture(Color.Blue);
+        public static readonly Texture2D texture_J = Tools.CreateColorTexture(Color.DarkBlue);
 
         int framesCount = 0;
 

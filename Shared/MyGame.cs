@@ -43,7 +43,7 @@ namespace Shared
 
         protected override void LoadContent()
         {
-            actualScene = WK.Scene.MenuScene;
+            actualScene = WK.Scene.GameScene;
 
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
