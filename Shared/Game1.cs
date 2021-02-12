@@ -22,42 +22,47 @@ namespace Shared
 
         public Game1()
         {
-            string absolutePath = new DirectoryInfo(Path.GetFullPath(Path.Combine(Environment.CurrentDirectory, relativePath))).ToString();
-            this.Content.RootDirectory = absolutePath;
-            contentManager = this.Content;
-
+            // Window
             graphicsDeviceManager = new GraphicsDeviceManager(this);
+            graphicsDeviceManager.PreferredBackBufferWidth = WK.Desktop.Width;
+            graphicsDeviceManager.PreferredBackBufferHeight = WK.Desktop.Height;
+            graphicsDeviceManager.ApplyChanges();
 
-            // Window size
-            graphicsDeviceManager.PreferredBackBufferWidth = 180;
-            graphicsDeviceManager.PreferredBackBufferHeight = 220;
-        }
+            // FPS
+            base.IsFixedTimeStep = true;
+            base.TargetElapsedTime = TimeSpan.FromSeconds(1d / WK.Default.FPS);
+
+            // Content
+            string absolutePath = Path.Combine(Environment.CurrentDirectory, "Content");
+            base.Content.RootDirectory = absolutePath;
+            Game1.contentManager = base.Content;
+
+            // Scenes
+            scenes = new Dictionary<string, IScene>()
+            {
+                { WK.Scene.MenuScene, new MenuScene() },
+                { WK.Scene.GameScene, new Escena_1() }
+            };
+            actualScene = WK.Scene.GameScene;
+
+            // others
+            base.Window.Title = "Hello Window";
+            base.IsMouseVisible = true;
 
 
-        protected override void Initialize()
-        {
-            // code
+            // Initialize objects (scores, values, items, etc)
             base.Initialize();
         }
 
 
         protected override void LoadContent()
         {
-            actualScene = WK.Scene.GameScene;
-
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
-            scenes = new Dictionary<string, IScene>()
-            {
-                { WK.Scene.MenuScene, new MenuScene() },
-                { WK.Scene.GameScene, new Escena_1() }
-            };
         }
 
 
         protected override void Update(GameTime gameTime)
         {
-            // code
             scenes[actualScene].Update();
 
             base.Update(gameTime);

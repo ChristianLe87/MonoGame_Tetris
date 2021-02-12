@@ -4,6 +4,11 @@ namespace Shared
 {
     public class WK
     {
+        public class Default
+        {
+            public static readonly int FPS = 60;
+        }
+
         public class Scene
         {
             public static readonly string MenuScene = "Menu";
@@ -73,7 +78,7 @@ namespace Shared
         public class Desktop
         {
             public const int Height = 220;
-            public const int Width = 160;
+            public const int Width = 180;
         }
 
         public class iPhone
