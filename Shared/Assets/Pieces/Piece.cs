@@ -12,7 +12,7 @@ namespace Shared
         public char[,] actualPieceDesign;
         public char[,] nextPieceDesign;
 
-        public Vector2 playerPosition { get;  set; }
+        public Vector2 playerPosition { get; set; }
 
         public static readonly Texture2D texture_S = Tools.CreateColorTexture(Color.Green);
         public static readonly Texture2D texture_Z = Tools.CreateColorTexture(Color.Red);

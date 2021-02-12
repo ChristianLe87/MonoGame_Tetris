@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Shared
 {
-    public class MenuScene: IScene
+    public class MenuScene : IScene
     {
         Text topScore;
 

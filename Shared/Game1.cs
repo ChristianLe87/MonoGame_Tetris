@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Shared
 {
-    public class MyGame : Game
+    public class Game1 : Game
     {
         SpriteBatch spriteBatch;
 
@@ -20,7 +20,7 @@ namespace Shared
 
         string actualScene;
 
-        public MyGame(string relativePath)
+        public Game1()
         {
             string absolutePath = new DirectoryInfo(Path.GetFullPath(Path.Combine(Environment.CurrentDirectory, relativePath))).ToString();
             this.Content.RootDirectory = absolutePath;

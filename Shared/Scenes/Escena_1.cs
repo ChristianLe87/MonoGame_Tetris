@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Shared
 {
-    public class Escena_1: IScene
+    public class Escena_1 : IScene
     {
         GameGrid gameGrid;
         NextPiecePreview nextPiecePreview;
@@ -29,7 +29,7 @@ namespace Shared
 
         public void Update()
         {
-            if(isGameOver == false)
+            if (isGameOver == false)
             {
                 gameGrid.Update();
                 nextPiecePreview.Update(gameGrid.piece.nextPieceDesign);

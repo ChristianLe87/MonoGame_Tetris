@@ -17,7 +17,7 @@ namespace Shared
         public Text(Rectangle rectangle, string fileName, string displayText, HorizontalAlignment horizontalAlignment, VerticalAlignment verticalAlignment)
         {
             this.rectangle = rectangle;
-            this.spriteFont = MyGame.contentManager.Load<SpriteFont>(fileName);
+            this.spriteFont = Game1.contentManager.Load<SpriteFont>(fileName);
             this.displayText = displayText;
             this.horizontalAlignment = horizontalAlignment;
             this.verticalAlignment = verticalAlignment;

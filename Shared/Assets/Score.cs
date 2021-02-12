@@ -26,7 +26,7 @@ namespace Shared
             this.textScore.Update(this.score.ToString());
         }
 
-   
+
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(backgrownd, rectangle, Color.White);

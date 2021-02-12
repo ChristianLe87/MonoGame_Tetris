@@ -3,32 +3,31 @@
   <PropertyGroup>
     <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
     <HasSharedItems>true</HasSharedItems>
-    <SharedGUID>{CFFC2C12-EA1E-4333-9DC6-F4DD30A7C679}</SharedGUID>
+    <SharedGUID>{6F9D229F-FB33-4B35-8254-6DC6C1E14DC7}</SharedGUID>
   </PropertyGroup>
   <PropertyGroup Label="Configuration">
     <Import_RootNamespace>Shared</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)MyGame.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Tools\WK.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Tools\Tools.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Scenes\Escena_1.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Assets\GameGrid.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Assets\Score.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Assets\NextPiecePreview.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Assets\Lines.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Assets\Pieces\Piece.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Assets\LevelNumber.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Tools\Text.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Assets\GameOver.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Scenes\MenuScene.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Tools\IScene.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Tools\Text.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Tools\Tools.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Tools\WK.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Scenes\Escena_1.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game1.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Scenes\MenuScene.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Assets\GameGrid.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Assets\GameOver.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Assets\LevelNumber.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Assets\Lines.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Assets\NextPiecePreview.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Assets\Score.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Assets\Pieces\Piece.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Tools\" />
     <Folder Include="$(MSBuildThisFileDirectory)Scenes\" />
     <Folder Include="$(MSBuildThisFileDirectory)Assets\" />
     <Folder Include="$(MSBuildThisFileDirectory)Assets\Pieces\" />
-    <Folder Include="$(MSBuildThisFileDirectory)Assets\Assets\" />
   </ItemGroup>
 </Project>
