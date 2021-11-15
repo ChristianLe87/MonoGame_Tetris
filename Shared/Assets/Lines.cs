@@ -1,4 +1,5 @@
 ﻿using ChristianTools.Tools;
+using ChristianTools.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -9,15 +10,35 @@ namespace Shared
         Rectangle rectangle;
         Texture2D backgrownd;
         int lineCount;
-        Text title;
-        Text lineCountText;
+        Label title;
+        Label lineCountText;
 
         public Lines(Rectangle rectangle)
         {
             this.rectangle = rectangle;
             this.backgrownd = Tools.Texture.CreateColorTexture(Game1.graphicsDeviceManager.GraphicsDevice, Color.Green);
-            this.title = new Text(new Rectangle(rectangle.X, rectangle.Y, rectangle.Width, 15), WK.Font.Arial_10, "Lines", HorizontalAlignment.Center, VerticalAlignment.Center);
-            this.lineCountText = new Text(new Rectangle(rectangle.X, rectangle.Y + 15, rectangle.Width, rectangle.Height - 15), WK.Font.Arial_10, "0", HorizontalAlignment.Center, VerticalAlignment.Center);
+
+
+            Texture2D texture2D = Tools.Texture.GetTexture(Game1.graphicsDeviceManager.GraphicsDevice, Game1.contentManager, WK.Font.MyFont_PNG_130x28);
+            SpriteFont spriteFont = Tools.Font.GenerateFont(texture2D: texture2D, chars: WK.Font.Chars);
+
+            this.title = new Label(
+                rectangle: new Rectangle(rectangle.X, rectangle.Y, rectangle.Width, 15),
+                spriteFont: spriteFont,
+                text: "Lines",
+                textAlignment: Label.TextAlignment.Midle_Center,
+                fontColor: Color.Black
+            );
+
+
+            this.lineCountText = new Label(
+                rectangle: new Rectangle(rectangle.X, rectangle.Y + 15, rectangle.Width, rectangle.Height - 15),
+                spriteFont: spriteFont,
+                text: "0",
+                textAlignment: Label.TextAlignment.Midle_Center,
+                fontColor: Color.Black
+            );
+
         }
 
         public void Update(int lines)
@@ -30,8 +51,8 @@ namespace Shared
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(backgrownd, rectangle, Color.White);
-            lineCountText.Draw(spriteBatch, Color.Red);
-            title.Draw(spriteBatch, Color.Black);
+            lineCountText.Draw(spriteBatch);
+            title.Draw(spriteBatch);
         }
     }
 }

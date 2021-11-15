@@ -1,4 +1,5 @@
 ﻿using ChristianTools.Tools;
+using ChristianTools.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -9,15 +10,36 @@ namespace Shared
         Rectangle rectangle;
         Texture2D backgrownd;
         int score;
-        Text textScore;
-        Text textTitle;
+        Label textScore;
+        Label textTitle;
 
         public Score(Rectangle rectangle)
         {
             this.rectangle = rectangle;
             this.backgrownd = Tools.Texture.CreateColorTexture(Game1.graphicsDeviceManager.GraphicsDevice, Color.YellowGreen);
-            this.textScore = new Text(new Rectangle(rectangle.X, rectangle.Y + 20, rectangle.Width, 10), WK.Font.Arial_10, "abc", HorizontalAlignment.Center, VerticalAlignment.Center);
-            this.textTitle = new Text(new Rectangle(rectangle.X, rectangle.Y, rectangle.Width, 10), WK.Font.Arial_10, "Score", HorizontalAlignment.Center, VerticalAlignment.Center);
+
+
+            Texture2D texture2D = Tools.Texture.GetTexture(Game1.graphicsDeviceManager.GraphicsDevice, Game1.contentManager, WK.Font.MyFont_PNG_130x28);
+            SpriteFont spriteFont = Tools.Font.GenerateFont(texture2D: texture2D, chars: WK.Font.Chars);
+
+            this.textScore = new Label(
+                rectangle: new Rectangle(rectangle.X, rectangle.Y + 20, rectangle.Width, 10),
+                spriteFont: spriteFont,
+                text: "abc",
+                textAlignment: Label.TextAlignment.Midle_Center,
+                fontColor: Color.Black
+            );
+
+
+            
+            this.textTitle = new Label(
+                rectangle: new Rectangle(rectangle.X, rectangle.Y, rectangle.Width, 10),
+                spriteFont: spriteFont,
+                text: "Score",
+                textAlignment: Label.TextAlignment.Midle_Center,
+                fontColor: Color.Black
+            );
+
         }
 
         public void Update(int score)
@@ -30,8 +52,8 @@ namespace Shared
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(backgrownd, rectangle, Color.White);
-            textScore.Draw(spriteBatch, Color.Green);
-            textTitle.Draw(spriteBatch, Color.Green);
+            textScore.Draw(spriteBatch);
+            textTitle.Draw(spriteBatch);
         }
     }
 }

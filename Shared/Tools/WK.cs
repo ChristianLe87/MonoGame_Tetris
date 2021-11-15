@@ -72,7 +72,15 @@ namespace Shared
 
         public class Font
         {
-            public const string Arial_10 = "Arial_10";
+            public static readonly string MyFont_PNG_130x28 = "MyFont_PNG_130x28";
+
+            public static readonly char[,] Chars = new char[,]
+            {
+                { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' },
+                { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z' },
+                { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9','\0','\0','\0','\0','\0','\0','\0','\0','\0','\0','\0','\0','\0','\0','\0','\0' },
+                { ',', ':', ';', '?', '.', '!', ' ','\'','(',')','\0','\0','\0','\0','\0','\0','\0','\0','\0','\0','\0','\0','\0','\0','\0','\0' }
+            };
         }
 
         public class Desktop

@@ -13,6 +13,10 @@
       <Link>Content\Arial_10.xnb</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="..\Content\MyFont_PNG_130x28.png">
+      <Link>Content\MyFont_PNG_130x28.png</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Import Project="..\..\Monogame_Christian_Tools\ChristianTools.Tools\ChristianTools.Tools.projitems" Label="Shared" Condition="Exists('..\..\Monogame_Christian_Tools\ChristianTools.Tools\ChristianTools.Tools.projitems')" />
   <Import Project="..\..\Monogame_Christian_Tools\ChristianTools.UI\ChristianTools.UI.projitems" Label="Shared" Condition="Exists('..\..\Monogame_Christian_Tools\ChristianTools.UI\ChristianTools.UI.projitems')" />
