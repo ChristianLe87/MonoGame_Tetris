@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using ChristianTools.Tools;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -14,13 +15,13 @@ namespace Shared
 
         public Vector2 playerPosition { get; set; }
 
-        public static readonly Texture2D texture_S = Tools.CreateColorTexture(Color.Green);
-        public static readonly Texture2D texture_Z = Tools.CreateColorTexture(Color.Red);
-        public static readonly Texture2D texture_T = Tools.CreateColorTexture(Color.Magenta);
-        public static readonly Texture2D texture_O = Tools.CreateColorTexture(Color.Yellow);
-        public static readonly Texture2D texture_I = Tools.CreateColorTexture(Color.LightBlue);
-        public static readonly Texture2D texture_L = Tools.CreateColorTexture(Color.Orange);
-        public static readonly Texture2D texture_J = Tools.CreateColorTexture(Color.DarkBlue);
+        public static readonly Texture2D texture_S = Tools.Texture.CreateColorTexture(Game1.graphicsDeviceManager.GraphicsDevice, Color.Green);
+        public static readonly Texture2D texture_Z = Tools.Texture.CreateColorTexture(Game1.graphicsDeviceManager.GraphicsDevice, Color.Red);
+        public static readonly Texture2D texture_T = Tools.Texture.CreateColorTexture(Game1.graphicsDeviceManager.GraphicsDevice, Color.Magenta);
+        public static readonly Texture2D texture_O = Tools.Texture.CreateColorTexture(Game1.graphicsDeviceManager.GraphicsDevice, Color.Yellow);
+        public static readonly Texture2D texture_I = Tools.Texture.CreateColorTexture(Game1.graphicsDeviceManager.GraphicsDevice, Color.LightBlue);
+        public static readonly Texture2D texture_L = Tools.Texture.CreateColorTexture(Game1.graphicsDeviceManager.GraphicsDevice, Color.Orange);
+        public static readonly Texture2D texture_J = Tools.Texture.CreateColorTexture(Game1.graphicsDeviceManager.GraphicsDevice, Color.DarkBlue);
 
         int framesCount = 0;
 

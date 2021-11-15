@@ -1,4 +1,4 @@
-﻿using System;
+﻿using ChristianTools.Tools;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -14,7 +14,7 @@ namespace Shared
         public GameOver(Rectangle rectangle)
         {
             this.rectangle = rectangle;
-            this.backgrownd = Tools.CreateColorTexture(Color.Yellow);
+            this.backgrownd = Tools.Texture.CreateColorTexture(Game1.graphicsDeviceManager.GraphicsDevice, Color.Yellow);
             this.label = new Text(new Rectangle(rectangle.X, rectangle.Y, rectangle.Width, 15), WK.Font.Arial_10, "Game Over", HorizontalAlignment.Center, VerticalAlignment.Center);
         }
 

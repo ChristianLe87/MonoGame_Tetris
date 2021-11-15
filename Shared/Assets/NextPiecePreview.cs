@@ -1,4 +1,5 @@
 ﻿using System;
+using ChristianTools.Tools;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -15,8 +16,8 @@ namespace Shared
         public NextPiecePreview(Rectangle rectangle)
         {
             this.rectangle = rectangle;
-            this.background = Tools.CreateColorTexture(Color.Pink);
-            this.nextPieceTexture = Tools.CreateColorTexture(Color.Blue);
+            this.background = Tools.Texture.CreateColorTexture(Game1.graphicsDeviceManager.GraphicsDevice, Color.Pink);
+            this.nextPieceTexture = Tools.Texture.CreateColorTexture(Game1.graphicsDeviceManager.GraphicsDevice, Color.Blue);
         }
 
 

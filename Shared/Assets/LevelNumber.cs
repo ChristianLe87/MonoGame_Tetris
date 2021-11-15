@@ -1,4 +1,5 @@
 ﻿using System;
+using ChristianTools.Tools;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -14,7 +15,7 @@ namespace Shared
         public LevelNumber(Vector2 position)
         {
             this.position = position;
-            this.backgrownd = Tools.CreateColorTexture(Color.Pink);
+            this.backgrownd = Tools.Texture.CreateColorTexture(Game1.graphicsDeviceManager.GraphicsDevice, Color.Pink);
             this.text = new Text(new Rectangle((int)position.X, (int)position.Y, 50, 29), WK.Font.Arial_10, "hello", HorizontalAlignment.Center, VerticalAlignment.Center);
         }
 

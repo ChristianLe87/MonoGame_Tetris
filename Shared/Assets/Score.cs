@@ -1,4 +1,4 @@
-﻿using System;
+﻿using ChristianTools.Tools;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -15,7 +15,7 @@ namespace Shared
         public Score(Rectangle rectangle)
         {
             this.rectangle = rectangle;
-            this.backgrownd = Tools.CreateColorTexture(Color.YellowGreen);
+            this.backgrownd = Tools.Texture.CreateColorTexture(Game1.graphicsDeviceManager.GraphicsDevice, Color.YellowGreen);
             this.textScore = new Text(new Rectangle(rectangle.X, rectangle.Y + 20, rectangle.Width, 10), WK.Font.Arial_10, "abc", HorizontalAlignment.Center, VerticalAlignment.Center);
             this.textTitle = new Text(new Rectangle(rectangle.X, rectangle.Y, rectangle.Width, 10), WK.Font.Arial_10, "Score", HorizontalAlignment.Center, VerticalAlignment.Center);
         }

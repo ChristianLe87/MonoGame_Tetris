@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using ChristianTools.Tools;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -19,9 +20,9 @@ namespace Shared
         public GameGrid(Vector2 GameGridPosition)
         {
             this.GameGridPosition = GameGridPosition;
-            textureBackgrownd = Tools.CreateColorTexture(Color.Pink);
-            texturePlayer = Tools.CreateColorTexture(Color.Red);
-            textureBorder = Tools.CreateColorTexture(Color.Brown);
+            textureBackgrownd = Tools.Texture.CreateColorTexture(Game1.graphicsDeviceManager.GraphicsDevice, Color.Pink);
+            texturePlayer = Tools.Texture.CreateColorTexture(Game1.graphicsDeviceManager.GraphicsDevice, Color.Red);
+            textureBorder = Tools.Texture.CreateColorTexture(Game1.graphicsDeviceManager.GraphicsDevice, Color.Brown);
 
             piece = new Piece();
         }

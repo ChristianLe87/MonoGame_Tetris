@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using ChristianTools.Tools;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace Shared
@@ -14,7 +15,7 @@ namespace Shared
         public Lines(Rectangle rectangle)
         {
             this.rectangle = rectangle;
-            this.backgrownd = Tools.CreateColorTexture(Color.Green);
+            this.backgrownd = Tools.Texture.CreateColorTexture(Game1.graphicsDeviceManager.GraphicsDevice, Color.Green);
             this.title = new Text(new Rectangle(rectangle.X, rectangle.Y, rectangle.Width, 15), WK.Font.Arial_10, "Lines", HorizontalAlignment.Center, VerticalAlignment.Center);
             this.lineCountText = new Text(new Rectangle(rectangle.X, rectangle.Y + 15, rectangle.Width, rectangle.Height - 15), WK.Font.Arial_10, "0", HorizontalAlignment.Center, VerticalAlignment.Center);
         }
