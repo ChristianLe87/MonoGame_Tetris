@@ -43,7 +43,7 @@ namespace Shared
                 { WK.Scene.MenuScene, new MenuScene() },
                 { WK.Scene.GameScene, new Escena_1() }
             };
-            actualScene = WK.Scene.GameScene;
+            actualScene = WK.Scene.MenuScene;
 
             // others
             base.Window.Title = "Hello Window";
@@ -81,10 +81,12 @@ namespace Shared
             base.Draw(gameTime);
         }
 
-        public static void ChangeScene(string scene)
+        public static void ChangeToScene(string scene)
         {
+            //scenes[actualScene] = null;
+
             actualScene = scene;
-            scenes[scene].Initialize();
+            scenes[actualScene].Initialize();
         }
     }
 }

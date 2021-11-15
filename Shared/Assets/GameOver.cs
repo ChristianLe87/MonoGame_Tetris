@@ -35,7 +35,7 @@ namespace Shared
             this.isGameOver = isGameOver;
 
             if (isGameOver == true)
-                label.Update("Game Over\nQ to menu");
+                label.Update("Game Over\n'Q' to menu");
         }
 
 

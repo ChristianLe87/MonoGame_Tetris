@@ -27,12 +27,17 @@ namespace Shared
 
         public void Initialize()
         {
-            gameGrid = new GameGrid(new Vector2(10, 10));
-            nextPiecePreview = new NextPiecePreview(new Rectangle(120, 10, 50, 50));
-            score = new Score(new Rectangle(120, 70, 50, 50));
-            //levelNumber = new LevelNumber(new Vector2(120,130));
-            lines = new Lines(new Rectangle(120, 160, 50, 50));
-            gameOver = new GameOver(new Rectangle(50, 80, 80, 30));
+            this.gameGrid = new GameGrid(new Vector2(10, 10));
+            this.nextPiecePreview = new NextPiecePreview(new Rectangle(120, 10, 50, 50));
+            this.score = new Score(new Rectangle(120, 70, 50, 50));
+            //this.levelNumber = new LevelNumber(new Vector2(120,130));
+            this.lines = new Lines(new Rectangle(120, 160, 50, 50));
+            this.gameOver = new GameOver(new Rectangle(50, 80, 80, 30));
+
+            lineCount = 0;
+            scoreCount = 0;
+            levelCount = 0;
+            isGameOver = false;
 
             this.previousKeyboardState = Keyboard.GetState();
         }
@@ -54,8 +59,8 @@ namespace Shared
             KeyboardState keyboardState = Keyboard.GetState();
 
             if (isGameOver == true)
-                if(keyboardState.IsKeyDown(Keys.Q) && previousKeyboardState.IsKeyUp(Keys.Q))
-                    Game1.ChangeScene(WK.Scene.MenuScene);
+                if (keyboardState.IsKeyDown(Keys.Q) && previousKeyboardState.IsKeyUp(Keys.Q))
+                    Game1.ChangeToScene(WK.Scene.MenuScene);
 
             previousKeyboardState = keyboardState;
 

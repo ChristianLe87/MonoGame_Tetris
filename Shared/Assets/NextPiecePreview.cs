@@ -18,6 +18,7 @@ namespace Shared
             this.rectangle = rectangle;
             this.background = Tools.Texture.CreateColorTexture(Game1.graphicsDeviceManager.GraphicsDevice, Color.Pink);
             this.nextPieceTexture = Tools.Texture.CreateColorTexture(Game1.graphicsDeviceManager.GraphicsDevice, Color.Blue);
+            this.piece = new char[,] { {  } };
         }
 
 
