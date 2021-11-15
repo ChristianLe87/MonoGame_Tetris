@@ -16,9 +16,9 @@ namespace Shared
         public static GraphicsDeviceManager graphicsDeviceManager;
         public static ContentManager contentManager;
 
-        Dictionary<string, IScene> scenes;
+        private static Dictionary<string, IScene> scenes;
 
-        string actualScene;
+        private static string actualScene;
 
         public Game1()
         {
@@ -79,6 +79,12 @@ namespace Shared
 
             spriteBatch.End();
             base.Draw(gameTime);
+        }
+
+        public static void ChangeScene(string scene)
+        {
+            actualScene = scene;
+            scenes[scene].Initialize();
         }
     }
 }

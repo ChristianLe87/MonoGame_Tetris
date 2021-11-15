@@ -1,5 +1,4 @@
-﻿using System;
-using ChristianTools.Tools;
+﻿using ChristianTools.Tools;
 using ChristianTools.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -12,10 +11,10 @@ namespace Shared
 
         public MenuScene()
         {
-            Reset();
+            Initialize();
         }
 
-        public void Reset()
+        public void Initialize()
         {
             Texture2D texture2D = Tools.Texture.GetTexture(Game1.graphicsDeviceManager.GraphicsDevice, Game1.contentManager, WK.Font.MyFont_PNG_130x28);
             SpriteFont spriteFont = Tools.Font.GenerateFont(texture2D: texture2D, chars: WK.Font.Chars);
@@ -38,5 +37,7 @@ namespace Shared
         {
             topScore.Draw(spriteBatch);
         }
+
+
     }
 }
