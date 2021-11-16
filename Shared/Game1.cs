@@ -101,7 +101,7 @@ namespace Shared
         {
             if (JsonSerialization.FileExist(WK.Default.GameDataFileName) == true)
             {
-                gameData = JsonSerialization.Read(WK.Default.GameDataFileName);
+                gameData = JsonSerialization.Read<GameData>(WK.Default.GameDataFileName);
             }
             else
             {
