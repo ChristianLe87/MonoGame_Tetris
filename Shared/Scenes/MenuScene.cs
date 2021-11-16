@@ -7,7 +7,7 @@ namespace Shared
 {
     public class MenuScene : IScene
     {
-        //Label topScore;
+        Label topScore;
         Button playButton;
 
         public MenuScene()
@@ -20,13 +20,13 @@ namespace Shared
             Texture2D fontTexture = Tools.Texture.GetTexture(Game1.graphicsDeviceManager.GraphicsDevice, Game1.contentManager, WK.Font.MyFont_PNG_130x28);
             SpriteFont spriteFont = Tools.Font.GenerateFont(texture2D: fontTexture, chars: WK.Font.Chars);
 
-            /*topScore = new Label(
-                rectangle: new Rectangle(20, 20, 50, 20),
+            topScore = new Label(
+                rectangle: new Rectangle(20, 50, 50, 20),
                 spriteFont: spriteFont,
-                text: "hello",
+                text: $"Top score: {Game1.gameData.score}",
                 textAlignment: Label.TextAlignment.Midle_Center,
                 fontColor: Color.Black
-            );*/
+            );
 
             this.playButton = new Button(
                 rectangle: new Rectangle(20, 20, 50, 20),
@@ -49,7 +49,7 @@ namespace Shared
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            //topScore.Draw(spriteBatch);
+            topScore.Draw(spriteBatch);
             playButton.Draw(spriteBatch);
         }
 

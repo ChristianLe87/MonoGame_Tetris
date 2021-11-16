@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using ChristianTools.Tools;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -49,6 +50,7 @@ namespace Shared
                 gameGrid.Update();
                 nextPiecePreview.Update(gameGrid.piece.nextPieceDesign);
                 score.Update(scoreCount);
+                Game1.gameData.score = scoreCount;
                 //levelNumber.Update();
                 lines.Update(lineCount);
             }
@@ -60,7 +62,11 @@ namespace Shared
 
             if (isGameOver == true)
                 if (keyboardState.IsKeyDown(Keys.Q) && previousKeyboardState.IsKeyUp(Keys.Q))
+                {
+                    JsonSerialization.Update(Game1.gameData, WK.Default.GameDataFileName);
                     Game1.ChangeToScene(WK.Scene.MenuScene);
+                }
+                    
 
             previousKeyboardState = keyboardState;
 
