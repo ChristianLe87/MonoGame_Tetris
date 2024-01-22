@@ -7,7 +7,6 @@ namespace Shared
         public class Default
         {
             public static readonly int FPS = 60;
-            public static readonly string GameDataFileName = "Tetrislike_GameData";
         }
 
         public class Scene

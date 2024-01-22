@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using ChristianTools.Tools;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -21,8 +20,6 @@ namespace Shared
 
         private static string actualScene;
 
-        public static GameData gameData;
-
         public Game1()
         {
             // Window
@@ -40,11 +37,6 @@ namespace Shared
             base.Content.RootDirectory = absolutePath;
             Game1.contentManager = base.Content;
 
-
-            // SetGameData
-            SetGameData();
-
-
             // Scenes
             scenes = new Dictionary<string, IScene>()
             {
@@ -56,8 +48,6 @@ namespace Shared
             // others
             base.Window.Title = "Hello Window";
             base.IsMouseVisible = true;
-
-
 
 
             // Initialize objects (scores, values, items, etc)
@@ -93,21 +83,10 @@ namespace Shared
 
         public static void ChangeToScene(string scene)
         {
+            //scenes[actualScene] = null;
+
             actualScene = scene;
             scenes[actualScene].Initialize();
-        }
-
-        private void SetGameData()
-        {
-            if (JsonSerialization.FileExist(WK.Default.GameDataFileName) == true)
-            {
-                gameData = JsonSerialization.Read<GameData>(WK.Default.GameDataFileName);
-            }
-            else
-            {
-                gameData = new GameData();
-                JsonSerialization.Create(gameData, WK.Default.GameDataFileName);
-            }
         }
     }
 }
