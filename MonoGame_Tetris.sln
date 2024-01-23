@@ -8,6 +8,8 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "ChristianTools.Tools", "Chr
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "ChristianTools.UI", "ChristianTools.UI\ChristianTools.UI.shproj", "{587E6C09-E5E8-4A29-BC2C-B65BC740CA4B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "macOS", "macOS\macOS.csproj", "{6BB21FCB-F83F-4777-AE5F-B876175D3290}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{E04556A3-1CC0-44C7-B64D-FF6CADE7C876}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E04556A3-1CC0-44C7-B64D-FF6CADE7C876}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E04556A3-1CC0-44C7-B64D-FF6CADE7C876}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6BB21FCB-F83F-4777-AE5F-B876175D3290}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{6BB21FCB-F83F-4777-AE5F-B876175D3290}.Debug|Any CPU.Build.0 = Debug|x86
+		{6BB21FCB-F83F-4777-AE5F-B876175D3290}.Release|Any CPU.ActiveCfg = Release|x86
+		{6BB21FCB-F83F-4777-AE5F-B876175D3290}.Release|Any CPU.Build.0 = Release|x86
 	EndGlobalSection
 EndGlobal
